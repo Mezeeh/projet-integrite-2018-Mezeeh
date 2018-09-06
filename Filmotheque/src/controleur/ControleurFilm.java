@@ -78,6 +78,6 @@ public class ControleurFilm {
 		this.vueListeFilm.afficherListeFilms(listeFilmsTest);
 		this.navigateur.naviguerVersVueListeFilm();
 		
-		//this.navigateur.naviguerVersVueAjouterFilm();
+		this.navigateur.naviguerVersVueAjouterFilm();
 	}
 }

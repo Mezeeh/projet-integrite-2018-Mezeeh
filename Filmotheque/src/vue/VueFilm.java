@@ -8,8 +8,6 @@ import modele.Film;
 
 public class VueFilm extends Scene{
 	
-	protected Pane panneau;
-	
 	protected GridPane grilleFilm;
 	
 	protected Label valeurTitre,
@@ -19,9 +17,8 @@ public class VueFilm extends Scene{
 					valeurDuree;
 
 	public VueFilm() {
-		super(new Pane(), 400, 400);
-		panneau = (Pane) this.getRoot();
-		grilleFilm = new GridPane();
+		super(new GridPane(), 400, 400);
+		grilleFilm = (GridPane) this.getRoot();
 		
 		valeurTitre = new Label();
 		grilleFilm.add(new Label("Titre : "), 0, 0);
@@ -42,8 +39,6 @@ public class VueFilm extends Scene{
 		valeurDuree = new Label();
 		grilleFilm.add(new Label("Duree : "), 0, 4);
 		grilleFilm.add(valeurDuree, 1, 4);
-		
-		panneau.getChildren().add(grilleFilm);
 	}
 
 	public void afficherFilm(Film film) {

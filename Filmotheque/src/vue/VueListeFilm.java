@@ -4,24 +4,20 @@ import java.util.List;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import modele.Film;
 
 public class VueListeFilm extends Scene{
 	
-	protected Pane panneau;
-	
 	protected GridPane grilleFilms;
 
 	public VueListeFilm() {
-		super(new Pane(), 400, 400);
-		panneau = (Pane) this.getRoot();	
-		grilleFilms = new GridPane();
-		
-		panneau.getChildren().add(grilleFilms);
+		super(new GridPane(), 400, 400);
+		grilleFilms = (GridPane) this.getRoot();
 	}
 
 	public void afficherListeFilms(List<Film> listeFilmsTest) {
+		this.grilleFilms.getChildren().clear();
+		
 		int numero = 0;
 		
 		this.grilleFilms.add(new Label("Titre : "), 0, numero);

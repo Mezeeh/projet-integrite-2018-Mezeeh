@@ -28,7 +28,7 @@ public class NavigateurDesVues extends Application{
 	@Override
 	public void start(Stage stade) throws Exception {
 		this.stade = stade;
-		stade.setScene(this.vueFilm);
+		stade.setScene(null);
 		stade.show();
 		
 		this.controleur = ControleurFilm.getInstance();
