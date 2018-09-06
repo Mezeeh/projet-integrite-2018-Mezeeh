@@ -77,7 +77,7 @@ public class FilmDAO {
 				
 				System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
 				
-				Film film = new Film(titre, description, genre, dateDeSortie, duree);
+				Film film = new Film(titre, "", genre, dateDeSortie, duree);
 				listeFilms.add(film);
 			}
 		} catch (SQLException e) {

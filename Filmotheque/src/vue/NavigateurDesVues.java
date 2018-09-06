@@ -9,6 +9,7 @@ public class NavigateurDesVues extends Application{
 	private Stage stade;
 
 	private VueAjouterFilm vueAjouterFilm;
+	private VueEditerFilm vueEditerFilm;
 	private VueListeFilm vueListeFilm;
 	private VueFilm vueFilm;
 	
@@ -17,6 +18,7 @@ public class NavigateurDesVues extends Application{
 	public NavigateurDesVues() 
 	{		
 		this.vueAjouterFilm = new VueAjouterFilm();
+		this.vueEditerFilm = new VueEditerFilm();
 		this.vueListeFilm = new VueListeFilm();
 		this.vueFilm = new VueFilm();
 	}
@@ -31,12 +33,17 @@ public class NavigateurDesVues extends Application{
 		this.controleur.activerVues(this);
 		
 		this.vueAjouterFilm.setControleur(controleur);
+		this.vueEditerFilm.setControleur(controleur);
 		this.vueListeFilm.setControleur(controleur);
 		this.vueFilm.setControleur(controleur);
 	}
 
 	public VueAjouterFilm getVueAjouterFilm() {
 		return vueAjouterFilm;
+	}
+	
+	public VueEditerFilm getVueEditerFilm() {
+		return vueEditerFilm;
 	}
 
 	public VueListeFilm getVueListeFilm() {
@@ -51,7 +58,12 @@ public class NavigateurDesVues extends Application{
 		stade.setScene(this.vueAjouterFilm);
 		stade.show();
 	}
-
+	
+	public void naviguerVersVueEditerFilm() {
+		stade.setScene(this.vueEditerFilm);
+		stade.show();
+	}
+	
 	public void naviguerVersVueFilm() {
 		stade.setScene(this.vueFilm);
 		stade.show();

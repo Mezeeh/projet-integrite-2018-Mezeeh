@@ -69,6 +69,11 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueAjouterFilm();
 	}
 	
+	public void notifierNaviguerEditerFilm(){
+		System.out.println("ControleurFilm.notifierEditerFilm()");
+		this.navigateur.naviguerVersVueEditerFilm();
+	}
+	
 	public void notifierEnregistrerFilm() {
 		System.out.println("ControleurFilm.notifierEnregistrerFilm()");
 		
