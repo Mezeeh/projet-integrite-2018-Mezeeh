@@ -48,8 +48,8 @@ public class ControleurFilm {
 		
 		//// TEST ////
 		Film film = new Film("Die Hard",
-				"Un policier new-yorkais, John McClane, est séparé de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu à Los Angeles passer les fêtes avec elle, il se rend à la tour Nakatomi où le patron donne une grande soirée. Tandis que John s'isole pour téléphoner, un groupe de terroristes allemands, dirigé par Hans Gruber, pénètre dans l'immeuble.",
-				"énigme/Thriller",
+				"Un policier new-yorkais, John McClane, est sï¿½parï¿½ de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu ï¿½ Los Angeles passer les fï¿½tes avec elle, il se rend ï¿½ la tour Nakatomi oï¿½ le patron donne une grande soirï¿½e. Tandis que John s'isole pour tï¿½lï¿½phoner, un groupe de terroristes allemands, dirigï¿½ par Hans Gruber, pï¿½nï¿½tre dans l'immeuble.",
+				"ï¿½nigme/Thriller",
 				"1988",
 				"2h 12m");
 		this.vueFilm.afficherFilm(film);
@@ -68,7 +68,7 @@ public class ControleurFilm {
 		System.out.println("ControleurFilm.notifierEnregistrerFilm()");
 		
 		Film film = this.navigateur.getVueAjouterFilm().demanderFilm();
-		//this.filmDAO.ajouterFilm(film);
+		this.filmDAO.ajouterFilm(film);
 		this.navigateur.naviguerVersVueListeFilm();
 	}
 }

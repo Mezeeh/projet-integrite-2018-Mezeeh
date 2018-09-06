@@ -72,7 +72,7 @@ public class FilmDAO {
 				String titre = curseurListeMoutons.getString("titre");
 				String description = curseurListeMoutons.getString("description");
 				String genre = curseurListeMoutons.getString("genre");
-				String dateDeSortie = curseurListeMoutons.getString("dateDeSortie");
+				String dateDeSortie = curseurListeMoutons.getString("date_de_sortie");
 				String duree = curseurListeMoutons.getString("duree");
 				
 				System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
@@ -85,5 +85,20 @@ public class FilmDAO {
 		}
 		
 		return listeFilms;
+	}
+
+	public void ajouterFilm(Film film)
+	{
+		System.out.println("FilmDAO.ajouterFilm()");
+		try {
+			Statement requeteAjouterFilm = connection.createStatement();
+
+			String sqlAjouterFilm = "INSERT INTO filmotheque(titre, description, genre, date_de_sortie, duree) VALUES('" + film.getTitre() + "','" + film.getDescription() + "','" + film.getGenre() + "','" + film.getDateDeSortie() + "','" + film.getDuree()+ "');";
+			System.out.println("SQL : " + sqlAjouterFilm);
+			requeteAjouterFilm.execute(sqlAjouterFilm);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
