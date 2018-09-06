@@ -1,9 +1,6 @@
-package controleur;
+package action;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.glass.ui.TouchInputSupport;
 
 import accesseur.FilmDAO;
 import modele.Film;

@@ -3,7 +3,6 @@ package vue;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import modele.Film;
 
 public class VueFilm extends Scene{
