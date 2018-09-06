@@ -93,7 +93,7 @@ public class FilmDAO {
 		try {
 			Statement requeteAjouterFilm = connection.createStatement();
 
-			String sqlAjouterFilm = "INSERT INTO filmotheque(titre, description, genre, date_de_sortie, duree) VALUES('" + film.getTitre() + "','" + film.getDescription() + "','" + film.getGenre() + "','" + film.getDateDeSortie() + "','" + film.getDuree()+ "');";
+			String sqlAjouterFilm = "INSERT INTO film(titre, description, genre, date_de_sortie, duree) VALUES('" + film.getTitre() + "','" + film.getDescription() + "','" + film.getGenre() + "','" + film.getDateDeSortie() + "','" + film.getDuree()+ "');";
 			System.out.println("SQL : " + sqlAjouterFilm);
 			requeteAjouterFilm.execute(sqlAjouterFilm);
 		} catch (SQLException e) {
