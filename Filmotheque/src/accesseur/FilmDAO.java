@@ -1,7 +1,10 @@
 package accesseur;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +52,19 @@ public class FilmDAO {
 		}
 		
 		try {
-			DriverManager.getConnection(BASEDEDONNEES_URL, BASEDEDONNEES_USAGER, BASEDEDONNEES_MOTDEPASSE);
+			Connection connection = DriverManager.getConnection(BASEDEDONNEES_URL, BASEDEDONNEES_USAGER, BASEDEDONNEES_MOTDEPASSE);
+			
+			Statement requeteListeMoutons = connection.createStatement();
+			ResultSet curseurListeMoutons = requeteListeMoutons.executeQuery("SELECT * FROM film");
+			
+			curseurListeMoutons.next();
+			String titre = curseurListeMoutons.getString("titre");
+			String description = curseurListeMoutons.getString("description");
+			String genre = curseurListeMoutons.getString("genre");
+			String dateDeSortie = curseurListeMoutons.getString("dateDeSortie");
+			String duree = curseurListeMoutons.getString("duree");
+			
+			System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
