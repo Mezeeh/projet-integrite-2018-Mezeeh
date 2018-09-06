@@ -51,20 +51,25 @@ public class FilmDAO {
 			e.printStackTrace();
 		}
 		
+		List<Film> listeFilms =  new ArrayList<Film>();
 		try {
 			Connection connection = DriverManager.getConnection(BASEDEDONNEES_URL, BASEDEDONNEES_USAGER, BASEDEDONNEES_MOTDEPASSE);
 			
 			Statement requeteListeMoutons = connection.createStatement();
 			ResultSet curseurListeMoutons = requeteListeMoutons.executeQuery("SELECT * FROM film");
 			
-			curseurListeMoutons.next();
-			String titre = curseurListeMoutons.getString("titre");
-			String description = curseurListeMoutons.getString("description");
-			String genre = curseurListeMoutons.getString("genre");
-			String dateDeSortie = curseurListeMoutons.getString("dateDeSortie");
-			String duree = curseurListeMoutons.getString("duree");
-			
-			System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
+			while(curseurListeMoutons.next()) {
+				String titre = curseurListeMoutons.getString("titre");
+				String description = curseurListeMoutons.getString("description");
+				String genre = curseurListeMoutons.getString("genre");
+				String dateDeSortie = curseurListeMoutons.getString("dateDeSortie");
+				String duree = curseurListeMoutons.getString("duree");
+				
+				System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
+				
+				Film film = new Film(titre, description, genre, dateDeSortie, duree);
+				listeFilms.add(film);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
