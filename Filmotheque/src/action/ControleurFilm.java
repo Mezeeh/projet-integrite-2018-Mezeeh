@@ -19,12 +19,16 @@ public class ControleurFilm {
 	private VueListeFilm vueListeFilm;
 	private VueFilm vueFilm;
 	
+	private FilmDAO filmDAO;
+	
 	public ControleurFilm()
 	{
 		instance = null;
 		vueAjouterFilm = null;
 		vueListeFilm = null;
 		vueFilm = null;
+		
+		filmDAO = new FilmDAO();
 		
 		System.out.println("Initialisation du controleur");
 	}
@@ -52,12 +56,19 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueFilm();
 		
 		/// TEST ///
-		FilmDAO filmDAO = new FilmDAO();
 		List<Film> listeFilmsTest = filmDAO.listerFilm();
 		
 		this.vueListeFilm.afficherListeFilms(listeFilmsTest);
 		this.navigateur.naviguerVersVueListeFilm();
 		
-		//this.navigateur.naviguerVersVueAjouterFilm();
+		this.navigateur.naviguerVersVueAjouterFilm();
+	}
+	
+	public void notifierEnregistrerFilm() {
+		System.out.println("ControleurFilm.notifierEnregistrerFilm()");
+		
+		Film film = this.navigateur.getVueAjouterFilm().demanderFilm();
+		//this.filmDAO.ajouterFilm(film);
+		this.navigateur.naviguerVersVueListeFilm();
 	}
 }

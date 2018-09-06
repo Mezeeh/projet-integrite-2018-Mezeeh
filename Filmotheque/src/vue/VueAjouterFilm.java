@@ -1,6 +1,8 @@
 package vue;
 
 import action.ControleurFilm;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,11 +24,23 @@ public class VueAjouterFilm extends Scene{
 	protected GridPane grilleFilm;
 
 	private ControleurFilm controleur;
+	
+	protected Button actionEnregistrerFilm;
 
 	public VueAjouterFilm() {
 		super(new VBox(), 400, 400);
+		
 		panneau = (VBox) this.getRoot();
 		grilleFilm = new GridPane();
+		
+		actionEnregistrerFilm = new Button("Enregistrer");
+		actionEnregistrerFilm.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				controleur.notifierEnregistrerFilm();
+			}
+		});
 		
 		valeurTitre = new TextField();
 		grilleFilm.add(new Label("Titre : "), 0, 0);
@@ -51,7 +65,7 @@ public class VueAjouterFilm extends Scene{
 		// Todo : retirer les textes magiques
 		panneau.getChildren().add(new Label("Ajouter un film")); // Todo : créer un sous-type de Label ou Text pour les titres
 		panneau.getChildren().add(grilleFilm);
-		panneau.getChildren().add(new Button("Enregistrer"));
+		panneau.getChildren().add(actionEnregistrerFilm);
 	}
 
 	
