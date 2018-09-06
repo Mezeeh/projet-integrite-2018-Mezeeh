@@ -72,14 +72,10 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueAjouterFilm();
 	}
 	
-	public void notifierNaviguerEditerFilm(){
-		System.out.println("ControleurFilm.notifierEditerFilm()");
-		Film film = new Film("Die Hard",
-				"Un policier new-yorkais, John McClane, est s�par� de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu � Los Angeles passer les f�tes avec elle, il se rend � la tour Nakatomi o� le patron donne une grande soir�e. Tandis que John s'isole pour t�l�phoner, un groupe de terroristes allemands, dirig� par Hans Gruber, p�n�tre dans l'immeuble.",
-				"�nigme/Thriller",
-				"1988",
-				"2h 12m");
-		this.vueEditerFilm.afficherFilm(film);
+	public void notifierNaviguerEditerFilm(int idFilm){
+		System.out.println("ControleurFilm.notifierEditerFilm(" + idFilm + ")");
+		
+		this.vueEditerFilm.afficherFilm(this.filmDAO.rapporterFilm(idFilm));
 		this.navigateur.naviguerVersVueEditerFilm();
 	}
 	

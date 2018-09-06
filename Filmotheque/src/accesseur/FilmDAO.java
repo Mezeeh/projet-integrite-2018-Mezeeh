@@ -62,22 +62,25 @@ public class FilmDAO {
 
 	public List<Film> listerFilm(){
 		List<Film> listeFilms =  new ArrayList<Film>();
-		Statement requeteListeMoutons;
+		Statement requeteListeFilms;
 
 		try {
-			requeteListeMoutons = connection.createStatement();
-			ResultSet curseurListeMoutons = requeteListeMoutons.executeQuery("SELECT * FROM film");
+			requeteListeFilms = connection.createStatement();
+			ResultSet curseurListeFilms = requeteListeFilms.executeQuery("SELECT * FROM film");
 			
-			while(curseurListeMoutons.next()) {
-				String titre = curseurListeMoutons.getString("titre");
-				String description = curseurListeMoutons.getString("description");
-				String genre = curseurListeMoutons.getString("genre");
-				String dateDeSortie = curseurListeMoutons.getString("date_de_sortie");
-				String duree = curseurListeMoutons.getString("duree");
+			while(curseurListeFilms.next()) {
+				int id = curseurListeFilms.getInt("id");
+				
+				String titre = curseurListeFilms.getString("titre");
+				String description = curseurListeFilms.getString("description");
+				String genre = curseurListeFilms.getString("genre");
+				String dateDeSortie = curseurListeFilms.getString("date_de_sortie");
+				String duree = curseurListeFilms.getString("duree");
 				
 				System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
 				
 				Film film = new Film(titre, "", genre, dateDeSortie, duree);
+				film.setId(id);
 				listeFilms.add(film);
 			}
 		} catch (SQLException e) {
@@ -87,8 +90,7 @@ public class FilmDAO {
 		return listeFilms;
 	}
 
-	public void ajouterFilm(Film film)
-	{
+	public void ajouterFilm(Film film){
 		System.out.println("FilmDAO.ajouterFilm()");
 		try {
 			Statement requeteAjouterFilm = connection.createStatement();
@@ -99,6 +101,36 @@ public class FilmDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+	}
+	
+	public Film rapporterFilm(int idFilm) {
+		Statement requeteFilm;
+		try {
+			requeteFilm = connection.createStatement();
+			// TODO factoriser chaines magiques dans des constantes - si possible interfaces
+			// TODO changer pour requete preparee
+			String SQL_RAPPORTER_FILM = "SELECT * FROM film WHERE id = " + idFilm;
+			System.out.println(SQL_RAPPORTER_FILM);
+			ResultSet curseurFilm = requeteFilm.executeQuery(SQL_RAPPORTER_FILM);
+			curseurFilm.next();
+			
+			int id = curseurFilm.getInt("id");
+			String titre = curseurFilm.getString("titre");
+			String description = curseurFilm.getString("description");
+			String genre = curseurFilm.getString("genre");
+			String dateDeSortie = curseurFilm.getString("date_de_sortie");
+			String duree = curseurFilm.getString("duree");
+			
+			System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
+			
+			Film film = new Film(titre, description, genre, dateDeSortie, duree);
+			film.setId(id);
+			
+			return film;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

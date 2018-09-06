@@ -7,7 +7,7 @@ public class Film {
 					dateDeSortie,
 					duree;
 	
-	
+	protected int id;
 
 	public Film(String titre) {
 		super();
@@ -83,6 +83,12 @@ public class Film {
 	public void setDuree(String duree) {
 		this.duree = duree;
 	}
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}	
 }

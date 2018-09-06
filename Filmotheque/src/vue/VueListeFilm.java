@@ -41,7 +41,7 @@ public class VueListeFilm extends Scene{
 			actionEditerFilm.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent arg0) {
-					controleur.notifierNaviguerEditerFilm();
+					controleur.notifierNaviguerEditerFilm(film.getId());
 				}});
 			
 			numero++;
