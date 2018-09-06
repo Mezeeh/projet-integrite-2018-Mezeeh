@@ -3,6 +3,8 @@ package vue;
 import java.util.List;
 
 import action.ControleurFilm;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,10 +15,14 @@ public class VueListeFilm extends Scene{
 	
 	protected GridPane grilleFilms;
 	private ControleurFilm controleur;
+	
+	private Button actionNaviguerAjouterFilm;
 
 	public VueListeFilm() {
 		super(new GridPane(), 400, 400);
 		grilleFilms = (GridPane) this.getRoot();
+		
+		actionNaviguerAjouterFilm = new Button("Ajouter un film");
 	}
 
 	public void afficherListeFilms(List<Film> listeFilmsTest) {
@@ -39,6 +45,16 @@ public class VueListeFilm extends Scene{
 			this.grilleFilms.add(new Label(film.getDuree()), 4, numero);
 			this.grilleFilms.add(new Button("Editer"), 5, numero);
 		}
+		
+		this.actionNaviguerAjouterFilm.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				controleur.notifierAjouterFilm();
+			}
+		});
+		
+		this.grilleFilms.add(this.actionNaviguerAjouterFilm, 1, ++numero);
 	}
 
 	public void setControleur(ControleurFilm controleur) {

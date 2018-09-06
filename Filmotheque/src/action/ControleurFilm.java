@@ -58,9 +58,14 @@ public class ControleurFilm {
 		/// TEST ///
 		List<Film> listeFilmsTest = filmDAO.listerFilm();
 		
-		this.vueListeFilm.afficherListeFilms(listeFilmsTest);
+		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm());
 		this.navigateur.naviguerVersVueListeFilm();
 		
+		//this.navigateur.naviguerVersVueAjouterFilm();
+	}
+	
+	public void notifierAjouterFilm() {
+		System.out.println("ControleurFilm.notifierNaviguerAjouterFilm()");
 		this.navigateur.naviguerVersVueAjouterFilm();
 	}
 	
@@ -69,6 +74,7 @@ public class ControleurFilm {
 		
 		Film film = this.navigateur.getVueAjouterFilm().demanderFilm();
 		this.filmDAO.ajouterFilm(film);
+		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm());
 		this.navigateur.naviguerVersVueListeFilm();
 	}
 }
