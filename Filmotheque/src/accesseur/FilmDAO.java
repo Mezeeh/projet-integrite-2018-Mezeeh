@@ -11,51 +11,61 @@ import java.util.List;
 import modele.Film;
 
 public class FilmDAO {
-	
-	private List<Film> simulerListerFilms()
-	{
-		List<Film> listeFilmsTest = new ArrayList<Film>();
-		listeFilmsTest.add(new Film("Die Hard",
-				"Un policier new-yorkais, John McClane, est séparé de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu à Los Angeles passer les fêtes avec elle, il se rend à la tour Nakatomi où le patron donne une grande soirée. Tandis que John s'isole pour téléphoner, un groupe de terroristes allemands, dirigé par Hans Gruber, pénètre dans l'immeuble.",
-				"énigme/Thriller",
-				"1988",
-				"2h 12m"));
-		listeFilmsTest.add(new Film("Rambo",
-				"Revenu du Viêtnam, abruti autant par les mauvais traitements que lui ont jadis infligés ses tortionnaires que par l'indifférence de ses concitoyens, le soldat Rambo, un ancien des commandos d'élite, traîne sa redoutable carcasse de ville en ville. Un shérif teigneux lui interdit l'accès de sa bourgade. Rambo insiste. Il veut seulement manger. Le shérif le met sous les verrous et laisse son adjoint brutaliser ce divertissant clochard.",
-				"Drame/Thriller",
-				"1982",
-				"1h 33m"));
-		listeFilmsTest.add(new Film("Rocky",
-				"Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'Étalon Italien. Cependant, Mickey, propriétaire du club de boxe où Rocky a l'habitude de s'entraîner, décide de céder son casier à un boxeur plus talentueux.",
-				"Drame/Sport",
-				"1976",
-				"2h 2m"));
-		listeFilmsTest.add(new Film("Le Seigneur des anneaux : La Communauté de l'anneau",
-				"Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron, le `Seigneur des ténèbres', de régner sur la `Terre du Milieu' et de réduire en esclavage ses peuples. Frodon doit parvenir jusqu'à la `Crevasse du Destin' pour détruire l'anneau.",
-				"fantasy/Action",
-				"2001",
-				"3h 48m"));
-		
-		return listeFilmsTest;
-	}
-	public List<Film> listerFilm()
-	{
-		String BASEDEDONNEES_DRIVER = "org.postgresql.Driver";
-		String BASEDEDONNEES_URL = "jdbc:postgresql://localhost:5432/filmotheque";
-		String BASEDEDONNEES_USAGER = "postgres";
-		String BASEDEDONNEES_MOTDEPASSE = "sudoroot";
-		
+
+	private static String BASEDEDONNEES_DRIVER = "org.postgresql.Driver";
+	private static String BASEDEDONNEES_URL = "jdbc:postgresql://localhost:5432/filmotheque";
+	private static String BASEDEDONNEES_USAGER = "postgres";
+	private static String BASEDEDONNEES_MOTDEPASSE = "sudoroot";
+
+	private Connection connection;
+
+	public FilmDAO() {
 		try {
 			Class.forName(BASEDEDONNEES_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		List<Film> listeFilms =  new ArrayList<Film>();
+
 		try {
-			Connection connection = DriverManager.getConnection(BASEDEDONNEES_URL, BASEDEDONNEES_USAGER, BASEDEDONNEES_MOTDEPASSE);
-			
-			Statement requeteListeMoutons = connection.createStatement();
+			connection = DriverManager.getConnection(BASEDEDONNEES_URL, BASEDEDONNEES_USAGER, BASEDEDONNEES_MOTDEPASSE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private List<Film> simulerListerFilms() {
+		List<Film> listeFilmsTest = new ArrayList<Film>();
+
+		listeFilmsTest.add(new Film("Die Hard",
+				"Un policier new-yorkais, John McClane, est sï¿½parï¿½ de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu ï¿½ Los Angeles passer les fï¿½tes avec elle, il se rend ï¿½ la tour Nakatomi oï¿½ le patron donne une grande soirï¿½e. Tandis que John s'isole pour tï¿½lï¿½phoner, un groupe de terroristes allemands, dirigï¿½ par Hans Gruber, pï¿½nï¿½tre dans l'immeuble.",
+				"ï¿½nigme/Thriller",
+				"1988",
+				"2h 12m"));
+		listeFilmsTest.add(new Film("Rambo",
+				"Revenu du Viï¿½tnam, abruti autant par les mauvais traitements que lui ont jadis infligï¿½s ses tortionnaires que par l'indiffï¿½rence de ses concitoyens, le soldat Rambo, un ancien des commandos d'ï¿½lite, traï¿½ne sa redoutable carcasse de ville en ville. Un shï¿½rif teigneux lui interdit l'accï¿½s de sa bourgade. Rambo insiste. Il veut seulement manger. Le shï¿½rif le met sous les verrous et laisse son adjoint brutaliser ce divertissant clochard.",
+				"Drame/Thriller",
+				"1982",
+				"1h 33m"));
+		listeFilmsTest.add(new Film("Rocky",
+				"Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps ï¿½ autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'ï¿½talon Italien. Cependant, Mickey, propriï¿½taire du club de boxe oï¿½ Rocky a l'habitude de s'entraï¿½ner, dï¿½cide de cï¿½der son casier ï¿½ un boxeur plus talentueux.",
+				"Drame/Sport",
+				"1976",
+				"2h 2m"));
+		listeFilmsTest.add(new Film("Le Seigneur des anneaux : La Communautï¿½ de l'anneau",
+				"Un jeune et timide `Hobbit', Frodon Sacquet, hï¿½rite d'un anneau magique. Bien loin d'ï¿½tre une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait ï¿½ Sauron, le `Seigneur des tï¿½nï¿½bres', de rï¿½gner sur la `Terre du Milieu' et de rï¿½duire en esclavage ses peuples. Frodon doit parvenir jusqu'ï¿½ la `Crevasse du Destin' pour dï¿½truire l'anneau.",
+				"fantasy/Action",
+				"2001",
+				"3h 48m"));
+
+		return listeFilmsTest;
+	}
+
+	public List<Film> listerFilm(){
+		List<Film> listeFilms =  new ArrayList<Film>();
+		Statement requeteListeMoutons;
+
+		try {
+			requeteListeMoutons = connection.createStatement();
 			ResultSet curseurListeMoutons = requeteListeMoutons.executeQuery("SELECT * FROM film");
 			
 			while(curseurListeMoutons.next()) {
@@ -74,6 +84,6 @@ public class FilmDAO {
 			e.printStackTrace();
 		}
 		
-		return this.simulerListerFilms();
+		return listeFilms;
 	}
 }
