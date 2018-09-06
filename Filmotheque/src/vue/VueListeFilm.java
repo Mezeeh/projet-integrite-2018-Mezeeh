@@ -1,6 +1,8 @@
 package vue;
 
 import java.util.List;
+
+import action.ControleurFilm;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +12,7 @@ import modele.Film;
 public class VueListeFilm extends Scene{
 	
 	protected GridPane grilleFilms;
+	private ControleurFilm controleur;
 
 	public VueListeFilm() {
 		super(new GridPane(), 400, 400);
@@ -38,4 +41,7 @@ public class VueListeFilm extends Scene{
 		}
 	}
 
+	public void setControleur(ControleurFilm controleur) {
+		this.controleur = controleur;
+	}
 }

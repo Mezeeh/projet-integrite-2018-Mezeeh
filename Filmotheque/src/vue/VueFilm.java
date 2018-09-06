@@ -1,5 +1,6 @@
 package vue;
 
+import action.ControleurFilm;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -14,6 +15,8 @@ public class VueFilm extends Scene{
 					valeurGenre,
 					valeurDateDeSortie,
 					valeurDuree;
+
+	private ControleurFilm controleur;
 
 	public VueFilm() {
 		super(new GridPane(), 400, 400);
@@ -46,5 +49,9 @@ public class VueFilm extends Scene{
 		this.valeurGenre.setText(film.getGenre());
 		this.valeurDateDeSortie.setText(film.getDateDeSortie());
 		this.valeurDuree.setText(film.getDuree());
+	}
+	
+	public void setControleur(ControleurFilm controleur) {
+		this.controleur = controleur;
 	}
 }

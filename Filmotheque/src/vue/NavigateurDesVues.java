@@ -29,6 +29,10 @@ public class NavigateurDesVues extends Application{
 		
 		this.controleur = ControleurFilm.getInstance();
 		this.controleur.activerVues(this);
+		
+		this.vueAjouterFilm.setControleur(controleur);
+		this.vueListeFilm.setControleur(controleur);
+		this.vueFilm.setControleur(controleur);
 	}
 
 	public VueAjouterFilm getVueAjouterFilm() {

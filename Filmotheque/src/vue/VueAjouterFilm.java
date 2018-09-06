@@ -1,5 +1,6 @@
 package vue;
 
+import action.ControleurFilm;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,6 +20,8 @@ public class VueAjouterFilm extends Scene{
 	protected VBox panneau;
 	
 	protected GridPane grilleFilm;
+
+	private ControleurFilm controleur;
 
 	public VueAjouterFilm() {
 		super(new VBox(), 400, 400);
@@ -60,5 +63,9 @@ public class VueAjouterFilm extends Scene{
 				this.valeurDuree.getText());
 		
 		return film;
+	}
+	
+	public void setControleur(ControleurFilm controleur) {
+		this.controleur = controleur;
 	}
 }
