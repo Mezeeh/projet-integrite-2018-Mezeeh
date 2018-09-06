@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import modele.Film;
 
 public class NavigateurDesVues extends Application{
+	
+	private Stage stade;
 
 	private VueAjouterFilm vueAjouterFilm;
 	private VueListeFilm vueListeFilm;
@@ -54,7 +56,40 @@ public class NavigateurDesVues extends Application{
 	
 	@Override
 	public void start(Stage stade) throws Exception {
+		this.stade = stade;
 		stade.setScene(this.vueFilm);
+		stade.show();
+		
+		//// TEST ////
+		this.naviguerVersVueListeFilm();
+		//this.naviguerVersVueFilm();
+		//this.naviguerVersVueAjouterFilm();
+	}
+
+	public VueAjouterFilm getVueAjouterFilm() {
+		return vueAjouterFilm;
+	}
+
+	public VueListeFilm getVueListeFilm() {
+		return vueListeFilm;
+	}
+
+	public VueFilm getVueFilm() {
+		return vueFilm;
+	}
+
+	private void naviguerVersVueAjouterFilm() {
+		stade.setScene(this.vueAjouterFilm);
+		stade.show();
+	}
+
+	private void naviguerVersVueFilm() {
+		stade.setScene(this.vueFilm);
+		stade.show();
+	}
+
+	private void naviguerVersVueListeFilm() {
+		stade.setScene(this.vueListeFilm);
 		stade.show();
 	}
 }

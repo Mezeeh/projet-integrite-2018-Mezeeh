@@ -1,15 +1,10 @@
 package vue;
 
-import java.util.ArrayList;
-
 import java.util.List;
-
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import modele.Film;
 
 public class VueListeFilm extends Scene{
