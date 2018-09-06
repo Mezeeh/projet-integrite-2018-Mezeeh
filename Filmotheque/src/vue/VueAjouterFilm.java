@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modele.Film;
 
-public class VueAjouterFilm extends Application{
+public class VueAjouterFilm extends Scene{
 	
 	protected TextField valeurTitre,
 						valeurDescription,
@@ -22,9 +22,9 @@ public class VueAjouterFilm extends Application{
 	
 	protected GridPane grilleFilm;
 
-	@Override
-	public void start(Stage stade) throws Exception {
-		panneau = new VBox();
+	public VueAjouterFilm() {
+		super(new VBox(), 400, 400);
+		panneau = (VBox) this.getRoot();
 		grilleFilm = new GridPane();
 		
 		valeurTitre = new TextField();
@@ -48,15 +48,19 @@ public class VueAjouterFilm extends Application{
 		grilleFilm.add(valeurDuree, 1, 4);	
 			
 		// Todo : retirer les textes magiques
-		panneau.getChildren().add(new Label("Ajouter un mouton")); // Todo : créer un sous-type de Label ou Text pour les titres
+		panneau.getChildren().add(new Label("Ajouter un film")); // Todo : créer un sous-type de Label ou Text pour les titres
 		panneau.getChildren().add(grilleFilm);
 		panneau.getChildren().add(new Button("Enregistrer"));
-		stade.setScene(new Scene(panneau, 400, 400));
-		stade.show();
 	}
 
 	
 	public Film demanderFilm() {
-		return null;
+		Film film = new Film(this.valeurTitre.getText(), 
+				this.valeurDescription.getText(), 
+				this.valeurGenre.getText(), 
+				this.valeurDateDeSortie.getText(), 
+				this.valeurDuree.getText());
+		
+		return film;
 	}
 }
