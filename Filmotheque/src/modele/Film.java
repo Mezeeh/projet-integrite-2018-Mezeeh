@@ -6,6 +6,28 @@ public class Film {
 					genre,
 					dateDeSortie,
 					duree;
+	
+	
+
+	public Film(String titre) {
+		super();
+		this.titre = titre;
+	}
+	
+	public Film(String titre, String description) {
+		super();
+		this.titre = titre;
+		this.description = description;
+	}
+
+	public Film(String titre, String description, String genre, String dateDeSortie, String duree) {
+		super();
+		this.titre = titre;
+		this.description = description;
+		this.genre = genre;
+		this.dateDeSortie = dateDeSortie;
+		this.duree = duree;
+	}
 
 	public String getTitre() {
 		return titre;
