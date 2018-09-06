@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import modele.Film;
 
-public class VueFilm extends Application{
+public class VueFilm extends Scene{
 	
 	protected Pane panneau;
 	
@@ -20,9 +20,9 @@ public class VueFilm extends Application{
 					valeurDateDeSortie,
 					valeurDuree;
 
-	@Override
-	public void start(Stage stade) throws Exception {
-		panneau = new Pane();
+	public VueFilm() {
+		super(new Pane(), 400, 400);
+		panneau = (Pane) this.getRoot();
 		grilleFilm = new GridPane();
 		
 		valeurTitre = new Label();
@@ -47,11 +47,7 @@ public class VueFilm extends Application{
 		
 		panneau.getChildren().add(grilleFilm);
 		
-		stade.setScene(new Scene(panneau, 400, 400));
-		
-		stade.show();
-		
-		
+		// TEST
 		Film film = new Film("Die Hard",
 				"Un policier new-yorkais, John McClane, est séparé de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu à Los Angeles passer les fêtes avec elle, il se rend à la tour Nakatomi où le patron donne une grande soirée. Tandis que John s'isole pour téléphoner, un groupe de terroristes allemands, dirigé par Hans Gruber, pénètre dans l'immeuble.",
 				"énigme/Thriller",
