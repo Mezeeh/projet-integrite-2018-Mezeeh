@@ -3,6 +3,8 @@ package controleur;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.glass.ui.TouchInputSupport;
+
 import modele.Film;
 import vue.NavigateurDesVues;
 import vue.VueAjouterFilm;
@@ -10,21 +12,37 @@ import vue.VueFilm;
 import vue.VueListeFilm;
 
 public class ControleurFilm {
+	
+	private static ControleurFilm instance;
 
 	private NavigateurDesVues navigateur;
 	
-	private VueAjouterFilm vueAjouterFilm = null;
-	private VueListeFilm vueListeFilm = null;
-	private VueFilm vueFilm = null;
+	private VueAjouterFilm vueAjouterFilm;
+	private VueListeFilm vueListeFilm;
+	private VueFilm vueFilm;
 	
-	public ControleurFilm(NavigateurDesVues navigateur)
+	public ControleurFilm()
 	{
+		instance = null;
+		vueAjouterFilm = null;
+		vueListeFilm = null;
+		vueFilm = null;
+		
+		System.out.println("Initialisation du controleur");
+	}
+	
+	public static ControleurFilm getInstance() {
+		if(null == instance)
+			instance = new ControleurFilm();
+		
+		return instance;
+	}
+	
+	public void activerVues(NavigateurDesVues navigateur) {
 		this.navigateur = navigateur;
 		this.vueAjouterFilm = navigateur.getVueAjouterFilm();
 		this.vueListeFilm = navigateur.getVueListeFilm();
 		this.vueFilm = navigateur.getVueFilm();
-		
-		System.out.println("Initialisation du controleur");
 		
 		//// TEST ////
 		Film film = new Film("Die Hard",
