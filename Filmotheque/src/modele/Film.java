@@ -20,6 +20,21 @@ public class Film {
 		this.description = description;
 	}
 
+	public Film(String titre, String description, String genre) {
+		super();
+		this.titre = titre;
+		this.description = description;
+		this.genre = genre;
+	}
+
+	public Film(String titre, String description, String genre, String dateDeSortie) {
+		super();
+		this.titre = titre;
+		this.description = description;
+		this.genre = genre;
+		this.dateDeSortie = dateDeSortie;
+	}
+
 	public Film(String titre, String description, String genre, String dateDeSortie, String duree) {
 		super();
 		this.titre = titre;
