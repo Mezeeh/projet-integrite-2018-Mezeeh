@@ -67,6 +67,14 @@ public class VueEditerFilm extends Scene{
 		panneau.getChildren().add(this.actionEnregistrerFilm);
 	}
 	
+	public void afficherFilm(Film film) {
+		this.valeurTitre.setText(film.getTitre());
+		this.valeurDescription.setText(film.getDescription());
+		this.valeurGenre.setText(film.getGenre());
+		this.valeurDateDeSortie.setText(film.getDateDeSortie());
+		this.valeurDuree.setText(film.getDuree());
+	}
+	
 	public Film demanderFilm()
 	{
 		Film film = new Film(this.valeurTitre.getText(), 
