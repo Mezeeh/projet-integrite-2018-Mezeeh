@@ -3,6 +3,7 @@ package vue;
 import java.util.ArrayList;
 import java.util.List;
 
+import controleur.ControleurFilm;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import modele.Film;
@@ -15,8 +16,10 @@ public class NavigateurDesVues extends Application{
 	private VueListeFilm vueListeFilm;
 	private VueFilm vueFilm;
 	
+	private ControleurFilm controleur;
+	
 	public NavigateurDesVues() 
-	{
+	{		
 		this.vueAjouterFilm = new VueAjouterFilm();
 		this.vueListeFilm = new VueListeFilm();
 		this.vueFilm = new VueFilm();
@@ -60,10 +63,7 @@ public class NavigateurDesVues extends Application{
 		stade.setScene(this.vueFilm);
 		stade.show();
 		
-		//// TEST ////
-		this.naviguerVersVueListeFilm();
-		//this.naviguerVersVueFilm();
-		//this.naviguerVersVueAjouterFilm();
+		this.controleur = new ControleurFilm(this);
 	}
 
 	public VueAjouterFilm getVueAjouterFilm() {
@@ -78,17 +78,17 @@ public class NavigateurDesVues extends Application{
 		return vueFilm;
 	}
 
-	private void naviguerVersVueAjouterFilm() {
+	public void naviguerVersVueAjouterFilm() {
 		stade.setScene(this.vueAjouterFilm);
 		stade.show();
 	}
 
-	private void naviguerVersVueFilm() {
+	public void naviguerVersVueFilm() {
 		stade.setScene(this.vueFilm);
 		stade.show();
 	}
 
-	private void naviguerVersVueListeFilm() {
+	public void naviguerVersVueListeFilm() {
 		stade.setScene(this.vueListeFilm);
 		stade.show();
 	}
