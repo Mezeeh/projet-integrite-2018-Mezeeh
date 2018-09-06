@@ -2,6 +2,7 @@ package vue;
 
 import java.util.List;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import modele.Film;
@@ -33,6 +34,7 @@ public class VueListeFilm extends Scene{
 			this.grilleFilms.add(new Label(film.getGenre()), 2, numero);
 			this.grilleFilms.add(new Label(film.getDateDeSortie()), 3, numero);
 			this.grilleFilms.add(new Label(film.getDuree()), 4, numero);
+			this.grilleFilms.add(new Button("Editer"), 5, numero);
 		}
 	}
 
