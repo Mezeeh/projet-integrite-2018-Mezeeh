@@ -38,7 +38,7 @@ public class VueAjouterFilm extends Scene{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				controleur.notifierEnregistrerFilm();
+				controleur.notifierEnregistrerNouveauFilm();
 			}
 		});
 		

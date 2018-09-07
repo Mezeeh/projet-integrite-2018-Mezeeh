@@ -79,7 +79,7 @@ public class FilmDAO {
 				
 				System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
 				
-				Film film = new Film(titre, "", genre, dateDeSortie, duree);
+				Film film = new Film(titre, description, genre, dateDeSortie, duree);
 				film.setId(id);
 				listeFilms.add(film);
 			}
@@ -97,7 +97,22 @@ public class FilmDAO {
 
 			String sqlAjouterFilm = "INSERT INTO film(titre, description, genre, date_de_sortie, duree) VALUES('" + film.getTitre() + "','" + film.getDescription() + "','" + film.getGenre() + "','" + film.getDateDeSortie() + "','" + film.getDuree()+ "');";
 			System.out.println("SQL : " + sqlAjouterFilm);
+			
 			requeteAjouterFilm.execute(sqlAjouterFilm);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void modifierFilm(Film film) {
+		System.out.println("FilmDAO.modifierFilm()");
+		try {
+			Statement requeteModifierFilm = connection.createStatement();
+			
+			String SQL_MODIFIER_FILM = "UPDATE film SET titre = '" + film.getTitre() + "', description = '" + film.getDescription() + "', genre = '" + film.getGenre() + "', date_de_sortie = '" + film.getDateDeSortie() + "', duree = '" + film.getDuree() + "' WHERE id = " + film.getId();
+			System.out.println("SQL : " + SQL_MODIFIER_FILM);
+			
+			requeteModifierFilm.execute(SQL_MODIFIER_FILM);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -111,6 +126,7 @@ public class FilmDAO {
 			// TODO changer pour requete preparee
 			String SQL_RAPPORTER_FILM = "SELECT * FROM film WHERE id = " + idFilm;
 			System.out.println(SQL_RAPPORTER_FILM);
+			
 			ResultSet curseurFilm = requeteFilm.executeQuery(SQL_RAPPORTER_FILM);
 			curseurFilm.next();
 			

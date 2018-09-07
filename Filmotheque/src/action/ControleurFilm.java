@@ -82,6 +82,15 @@ public class ControleurFilm {
 	public void notifierEnregistrerFilm() {
 		System.out.println("ControleurFilm.notifierEnregistrerFilm()");
 		
+		Film film = this.navigateur.getVueEditerFilm().demanderFilm();
+		this.filmDAO.modifierFilm(film);
+		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm()); // TODO optimiser
+		this.navigateur.naviguerVersVueListeFilm();
+	}
+	
+	public void notifierEnregistrerNouveauFilm() {
+		System.out.println("ControleurFilm.notifierEnregistrerNouveauFilm()");
+		
 		Film film = this.navigateur.getVueAjouterFilm().demanderFilm();
 		this.filmDAO.ajouterFilm(film);
 		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm());

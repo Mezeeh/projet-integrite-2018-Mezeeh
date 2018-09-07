@@ -17,6 +17,7 @@ public class VueEditerFilm extends Scene{
 						valeurGenre,
 						valeurDateDeSortie,
 						valeurDuree;
+	protected int idFilm;
 	
 	private VBox panneau;
 	
@@ -68,6 +69,7 @@ public class VueEditerFilm extends Scene{
 	}
 	
 	public void afficherFilm(Film film) {
+		this.idFilm = film.getId();
 		this.valeurTitre.setText(film.getTitre());
 		this.valeurDescription.setText(film.getDescription());
 		this.valeurGenre.setText(film.getGenre());
@@ -82,6 +84,8 @@ public class VueEditerFilm extends Scene{
 							this.valeurGenre.getText(), 
 							this.valeurDateDeSortie.getText(), 
 							this.valeurDuree.getText());
+		film.setId(idFilm);
+		
 		return film;
 	}
 	
