@@ -1,5 +1,8 @@
 package vue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import action.ControleurFilm;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import modele.Acteur;
 import modele.Film;
 
 public class VueEditerFilm extends Scene{
@@ -64,10 +68,27 @@ public class VueEditerFilm extends Scene{
 		grilleFilm.add(new Label("Duree : "), 0, 4);
 		grilleFilm.add(valeurDuree, 1, 4);	
 		
-		grilleListeActeurs.add(new Label("Acteur 1"), 0, 0);
-		grilleListeActeurs.add(new Label("Acteur 2"), 0, 1);
-		grilleListeActeurs.add(new Label("Acteur 3"), 0, 2);
-		grilleListeActeurs.add(new Label("Acteur 4"), 0, 3);
+		// TEST multiplicite
+		List<Acteur> listeActeurs = new ArrayList<Acteur>();
+		Acteur personne;
+		personne = new Acteur("Leonardo DiCaprio", "Américain");
+		listeActeurs.add(personne);
+		personne = new Acteur("Clint Eastwood", "Américain");
+		listeActeurs.add(personne);
+		personne = new Acteur("Brad Pitt", "Américain");
+		listeActeurs.add(personne);
+		personne = new Acteur("Robert De Niro", "Américain/Italien");
+		listeActeurs.add(personne);
+		
+ 		int item = 0;
+		for(Acteur acteur : listeActeurs)
+		{
+			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
+			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 1, item);
+			this.grilleListeActeurs.add(new Button("Éditer"), 2, item);
+			this.grilleListeActeurs.add(new Button("Effacer"), 3, item);
+			item++;
+		}
 			
 		// Todo : retirer les textes magiques
 		panneau.getChildren().add(new Label("Editer un film")); // Todo : créer un sous-type de Label ou Text pour les titres
