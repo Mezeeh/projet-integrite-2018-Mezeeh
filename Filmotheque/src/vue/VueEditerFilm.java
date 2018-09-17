@@ -80,15 +80,7 @@ public class VueEditerFilm extends Scene{
 		personne = new Acteur("Robert De Niro", "Américain/Italien");
 		listeActeurs.add(personne);
 		
- 		int item = 0;
-		for(Acteur acteur : listeActeurs)
-		{
-			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
-			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 1, item);
-			this.grilleListeActeurs.add(new Button("Éditer"), 2, item);
-			this.grilleListeActeurs.add(new Button("Effacer"), 3, item);
-			item++;
-		}
+ 		afficherListeActeur(listeActeurs);
 			
 		// Todo : retirer les textes magiques
 		panneau.getChildren().add(new Label("Editer un film")); // Todo : créer un sous-type de Label ou Text pour les titres
@@ -104,6 +96,18 @@ public class VueEditerFilm extends Scene{
 		this.valeurGenre.setText(film.getGenre());
 		this.valeurDateDeSortie.setText(film.getDateDeSortie());
 		this.valeurDuree.setText(film.getDuree());
+	}
+	
+	public void afficherListeActeur(List<Acteur> listeActeurs) {
+		int item = 0;
+		
+		for(Acteur acteur : listeActeurs){
+			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
+			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 1, item);
+			this.grilleListeActeurs.add(new Button("Éditer"), 2, item);
+			this.grilleListeActeurs.add(new Button("Effacer"), 3, item);
+			item++;
+		}
 	}
 	
 	public Film demanderFilm()
