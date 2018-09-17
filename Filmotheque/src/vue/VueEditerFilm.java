@@ -66,21 +66,7 @@ public class VueEditerFilm extends Scene{
 		
 		valeurDuree = new TextField("");
 		grilleFilm.add(new Label("Duree : "), 0, 4);
-		grilleFilm.add(valeurDuree, 1, 4);	
-		
-		// TEST multiplicite
-		List<Acteur> listeActeurs = new ArrayList<Acteur>();
-		Acteur personne;
-		personne = new Acteur("Leonardo DiCaprio", "Américain");
-		listeActeurs.add(personne);
-		personne = new Acteur("Clint Eastwood", "Américain");
-		listeActeurs.add(personne);
-		personne = new Acteur("Brad Pitt", "Américain");
-		listeActeurs.add(personne);
-		personne = new Acteur("Robert De Niro", "Américain/Italien");
-		listeActeurs.add(personne);
-		
- 		afficherListeActeur(listeActeurs);
+		grilleFilm.add(valeurDuree, 1, 4);
 			
 		// Todo : retirer les textes magiques
 		panneau.getChildren().add(new Label("Editer un film")); // Todo : créer un sous-type de Label ou Text pour les titres

@@ -1,8 +1,10 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import accesseur.FilmDAO;
+import modele.Acteur;
 import modele.Film;
 import vue.NavigateurDesVues;
 import vue.VueAjouterFilm;
@@ -65,6 +67,20 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueListeFilm();
 		
 		//this.navigateur.naviguerVersVueAjouterFilm();
+		
+		// TEST multiplicite
+		List<Acteur> listeActeurs = new ArrayList<Acteur>();
+		Acteur personne;
+		personne = new Acteur("Leonardo DiCaprio", "Américain");
+		listeActeurs.add(personne);
+		personne = new Acteur("Clint Eastwood", "Américain");
+		listeActeurs.add(personne);
+		personne = new Acteur("Brad Pitt", "Américain");
+		listeActeurs.add(personne);
+		personne = new Acteur("Robert De Niro", "Américain/Italien");
+		listeActeurs.add(personne);
+		
+ 		vueEditerFilm.afficherListeActeur(listeActeurs);
 	}
 	
 	public void notifierAjouterFilm() {
