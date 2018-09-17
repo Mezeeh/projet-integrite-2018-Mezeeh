@@ -21,7 +21,8 @@ public class VueEditerFilm extends Scene{
 	
 	private VBox panneau;
 	
-	private GridPane grilleFilm;
+	private GridPane grilleFilm,
+					 grilleListeActeurs;
 	
 	private ControleurFilm controleur;
 	
@@ -32,6 +33,7 @@ public class VueEditerFilm extends Scene{
 		
 		panneau = (VBox) this.getRoot();
 		grilleFilm = new GridPane();
+		grilleListeActeurs = new GridPane();
 		
 		this.actionEnregistrerFilm = new Button("Enregistrer");
 		this.actionEnregistrerFilm.setOnAction(new EventHandler<ActionEvent>() {
@@ -60,12 +62,18 @@ public class VueEditerFilm extends Scene{
 		
 		valeurDuree = new TextField("");
 		grilleFilm.add(new Label("Duree : "), 0, 4);
-		grilleFilm.add(valeurDuree, 1, 4);				
+		grilleFilm.add(valeurDuree, 1, 4);	
+		
+		grilleListeActeurs.add(new Label("Acteur 1"), 0, 0);
+		grilleListeActeurs.add(new Label("Acteur 2"), 0, 1);
+		grilleListeActeurs.add(new Label("Acteur 3"), 0, 2);
+		grilleListeActeurs.add(new Label("Acteur 4"), 0, 3);
 			
 		// Todo : retirer les textes magiques
 		panneau.getChildren().add(new Label("Editer un film")); // Todo : créer un sous-type de Label ou Text pour les titres
 		panneau.getChildren().add(grilleFilm);
 		panneau.getChildren().add(this.actionEnregistrerFilm);
+		panneau.getChildren().add(grilleListeActeurs);
 	}
 	
 	public void afficherFilm(Film film) {
