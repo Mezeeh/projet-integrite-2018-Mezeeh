@@ -11,7 +11,7 @@ import java.util.List;
 
 import modele.Film;
 
-public class FilmDAO {
+public class FilmDAO implements FilmSQL{
 	private Connection connection;
 
 	public FilmDAO() {
@@ -24,7 +24,7 @@ public class FilmDAO {
 
 		try {
 			requeteListeFilms = connection.createStatement();
-			ResultSet curseurListeFilms = requeteListeFilms.executeQuery("SELECT * FROM film");
+			ResultSet curseurListeFilms = requeteListeFilms.executeQuery(SQL_LISTER_FILM);
 			
 			while(curseurListeFilms.next()) {
 				int id = curseurListeFilms.getInt("id");
@@ -52,8 +52,6 @@ public class FilmDAO {
 		System.out.println("FilmDAO.ajouterFilm()");
 		PreparedStatement requeteAjouterFilm;
 		try {
-			String SQL_AJOUTER_FILM = "INSERT INTO film(titre, description, genre, date_de_sortie, duree) VALUES(?, ?, ?, ?, ?);";
-			
 			requeteAjouterFilm = connection.prepareStatement(SQL_AJOUTER_FILM);
 			requeteAjouterFilm.setString(1, film.getTitre());
 			requeteAjouterFilm.setString(2, film.getDescription());
@@ -73,8 +71,6 @@ public class FilmDAO {
 		System.out.println("FilmDAO.modifierFilm()");
 		PreparedStatement requeteModifierFilm;
 		try {
-			String SQL_MODIFIER_FILM = "UPDATE film SET titre = ?, description = ?, genre = ?, date_de_sortie = ?, duree = ? WHERE id = ?;";
-			
 			requeteModifierFilm = connection.prepareStatement(SQL_MODIFIER_FILM);
 			requeteModifierFilm.setString(1, film.getTitre());
 			requeteModifierFilm.setString(2, film.getDescription());
@@ -94,9 +90,6 @@ public class FilmDAO {
 	public Film rapporterFilm(int idFilm) {
 		PreparedStatement requeteFilm;
 		try {
-			String SQL_RAPPORTER_FILM = "SELECT * FROM film WHERE id = ?";
-			
-			// TODO factoriser chaines magiques dans des constantes - si possible interfaces
 			requeteFilm = connection.prepareStatement(SQL_RAPPORTER_FILM);
 			requeteFilm.setInt(1, idFilm);
 
