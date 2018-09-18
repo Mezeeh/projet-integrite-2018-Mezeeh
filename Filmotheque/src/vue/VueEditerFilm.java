@@ -30,7 +30,8 @@ public class VueEditerFilm extends Scene{
 	
 	private ControleurFilm controleur;
 	
-	protected Button actionEnregistrerFilm;
+	protected Button actionEnregistrerFilm,
+					 actionAjouterActeur;
 	
 	public VueEditerFilm()  {
 		super(new VBox(), 400, 400);
@@ -38,6 +39,16 @@ public class VueEditerFilm extends Scene{
 		panneau = (VBox) this.getRoot();
 		grilleFilm = new GridPane();
 		grilleListeActeurs = new GridPane();
+		
+		this.actionAjouterActeur = new Button("Ajouter un acteur");
+		this.actionAjouterActeur.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Bouton actionAjouterActeur appuye");
+			}
+			
+		});
 		
 		this.actionEnregistrerFilm = new Button("Enregistrer");
 		this.actionEnregistrerFilm.setOnAction(new EventHandler<ActionEvent>() {
@@ -70,9 +81,10 @@ public class VueEditerFilm extends Scene{
 			
 		// Todo : retirer les textes magiques
 		panneau.getChildren().add(new Label("Editer un film")); // Todo : créer un sous-type de Label ou Text pour les titres
-		panneau.getChildren().add(grilleFilm);
+		panneau.getChildren().add(this.grilleFilm);
 		panneau.getChildren().add(this.actionEnregistrerFilm);
-		panneau.getChildren().add(grilleListeActeurs);
+		panneau.getChildren().add(this.grilleListeActeurs);
+		panneau.getChildren().add(this.actionAjouterActeur);
 	}
 	
 	public void afficherFilm(Film film) {
