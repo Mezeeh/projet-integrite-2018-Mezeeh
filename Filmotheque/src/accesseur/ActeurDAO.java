@@ -10,7 +10,7 @@ import java.util.List;
 
 import modele.Acteur;
 
-public class ActeurDAO {
+public class ActeurDAO implements ActeurSQL{
 	private Connection connection;
 	
 	public ActeurDAO() {
@@ -22,9 +22,7 @@ public class ActeurDAO {
 		
 		PreparedStatement requeteListeActeurs;
 	
-		try {
-			String SQL_LISTER_ACTEUR_PAR_FILM = "SELECT * FROM acteur WHERE id_film = ?;";
-			
+		try {			
 			requeteListeActeurs = connection.prepareStatement(SQL_LISTER_ACTEUR_PAR_FILM);
 			requeteListeActeurs.setInt(1, idFilm);
 			
