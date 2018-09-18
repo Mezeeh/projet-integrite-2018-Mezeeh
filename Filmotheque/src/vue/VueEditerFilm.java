@@ -85,8 +85,8 @@ public class VueEditerFilm extends Scene{
 	}
 	
 	public void afficherListeActeur(List<Acteur> listeActeurs) {
+		grilleListeActeurs.getChildren().clear();
 		int item = 0;
-		
 		for(Acteur acteur : listeActeurs){
 			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
 			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 1, item);

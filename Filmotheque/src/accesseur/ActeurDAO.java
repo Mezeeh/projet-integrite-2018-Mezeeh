@@ -33,13 +33,13 @@ public class ActeurDAO {
 		}
 	}
 	
-	public List<Acteur> listerActeurs(){
+	public List<Acteur> listerActeurs(int idFilm){
 		List<Acteur> listeActeurs = new ArrayList<Acteur>();
 		Statement requeteListeActeurs;
 		
 		try {
 			requeteListeActeurs = connection.createStatement();
-			ResultSet curseurListeActeurs = requeteListeActeurs.executeQuery("SELECT * FROM acteur WHERE id_film = 1");
+			ResultSet curseurListeActeurs = requeteListeActeurs.executeQuery("SELECT * FROM acteur WHERE id_film =" + idFilm);
 			
 			while(curseurListeActeurs.next()){
 				int id = curseurListeActeurs.getInt("id");

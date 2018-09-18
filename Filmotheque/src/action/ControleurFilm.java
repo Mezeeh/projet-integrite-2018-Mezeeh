@@ -70,8 +70,6 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueListeFilm();
 		
 		//this.navigateur.naviguerVersVueAjouterFilm();
-		
- 		vueEditerFilm.afficherListeActeur(acteurDAO.listerActeurs());
 	}
 	
 	public void notifierAjouterFilm() {
@@ -83,6 +81,7 @@ public class ControleurFilm {
 		System.out.println("ControleurFilm.notifierEditerFilm(" + idFilm + ")");
 		
 		this.vueEditerFilm.afficherFilm(this.filmDAO.rapporterFilm(idFilm));
+		this.vueEditerFilm.afficherListeActeur(this.acteurDAO.listerActeurs(idFilm));
 		this.navigateur.naviguerVersVueEditerFilm();
 	}
 	
