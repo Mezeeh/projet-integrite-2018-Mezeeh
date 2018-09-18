@@ -16,7 +16,7 @@ public class ActeurDAO {
 		connection = BaseDeDonnees.getInstance().getConnection();
 	}
 	
-	public List<Acteur> listerActeurs(int idFilm){
+	public List<Acteur> listerActeursParFilm(int idFilm){
 		List<Acteur> listeActeurs = new ArrayList<Acteur>();
 		Statement requeteListeActeurs;
 		

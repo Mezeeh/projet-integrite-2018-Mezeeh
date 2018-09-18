@@ -81,7 +81,7 @@ public class ControleurFilm {
 		System.out.println("ControleurFilm.notifierEditerFilm(" + idFilm + ")");
 		
 		this.vueEditerFilm.afficherFilm(this.filmDAO.rapporterFilm(idFilm));
-		this.vueEditerFilm.afficherListeActeur(this.acteurDAO.listerActeurs(idFilm));
+		this.vueEditerFilm.afficherListeActeur(this.acteurDAO.listerActeursParFilm(idFilm));
 		this.navigateur.naviguerVersVueEditerFilm();
 	}
 	

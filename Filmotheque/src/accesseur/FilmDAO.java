@@ -2,6 +2,7 @@ package accesseur;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,13 +50,20 @@ public class FilmDAO {
 
 	public void ajouterFilm(Film film){
 		System.out.println("FilmDAO.ajouterFilm()");
+		PreparedStatement requeteAjouterFilm;
 		try {
-			Statement requeteAjouterFilm = connection.createStatement();
-
-			String sqlAjouterFilm = "INSERT INTO film(titre, description, genre, date_de_sortie, duree) VALUES('" + film.getTitre() + "','" + film.getDescription() + "','" + film.getGenre() + "','" + film.getDateDeSortie() + "','" + film.getDuree()+ "');";
-			System.out.println("SQL : " + sqlAjouterFilm);
+			String SQL_AJOUTER_FILM = "INSERT INTO film(titre, description, genre, date_de_sortie, duree) VALUES(?, ?, ?, ?, ?);";
 			
-			requeteAjouterFilm.execute(sqlAjouterFilm);
+			requeteAjouterFilm = connection.prepareStatement(SQL_AJOUTER_FILM);
+			requeteAjouterFilm.setString(1, film.getTitre());
+			requeteAjouterFilm.setString(2, film.getDescription());
+			requeteAjouterFilm.setString(3, film.getGenre());
+			requeteAjouterFilm.setString(4, film.getDateDeSortie());
+			requeteAjouterFilm.setString(5, film.getDuree());
+			
+			System.out.println("SQL : " + SQL_AJOUTER_FILM);
+			
+			requeteAjouterFilm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,28 +71,38 @@ public class FilmDAO {
 	
 	public void modifierFilm(Film film) {
 		System.out.println("FilmDAO.modifierFilm()");
+		PreparedStatement requeteModifierFilm;
 		try {
-			Statement requeteModifierFilm = connection.createStatement();
+			String SQL_MODIFIER_FILM = "UPDATE film SET titre = ?, description = ?, genre = ?, date_de_sortie = ?, duree = ? WHERE id = ?;";
 			
-			String SQL_MODIFIER_FILM = "UPDATE film SET titre = '" + film.getTitre() + "', description = '" + film.getDescription() + "', genre = '" + film.getGenre() + "', date_de_sortie = '" + film.getDateDeSortie() + "', duree = '" + film.getDuree() + "' WHERE id = " + film.getId();
+			requeteModifierFilm = connection.prepareStatement(SQL_MODIFIER_FILM);
+			requeteModifierFilm.setString(1, film.getTitre());
+			requeteModifierFilm.setString(2, film.getDescription());
+			requeteModifierFilm.setString(3, film.getGenre());
+			requeteModifierFilm.setString(4, film.getDateDeSortie());
+			requeteModifierFilm.setString(5, film.getDuree());
+			requeteModifierFilm.setInt(6, film.getId());
+			
 			System.out.println("SQL : " + SQL_MODIFIER_FILM);
 			
-			requeteModifierFilm.execute(SQL_MODIFIER_FILM);
+			requeteModifierFilm.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public Film rapporterFilm(int idFilm) {
-		Statement requeteFilm;
+		PreparedStatement requeteFilm;
 		try {
-			requeteFilm = connection.createStatement();
+			String SQL_RAPPORTER_FILM = "SELECT * FROM film WHERE id = ?";
+			
 			// TODO factoriser chaines magiques dans des constantes - si possible interfaces
-			// TODO changer pour requete preparee
-			String SQL_RAPPORTER_FILM = "SELECT * FROM film WHERE id = " + idFilm;
+			requeteFilm = connection.prepareStatement(SQL_RAPPORTER_FILM);
+			requeteFilm.setInt(1, idFilm);
+
 			System.out.println(SQL_RAPPORTER_FILM);
 			
-			ResultSet curseurFilm = requeteFilm.executeQuery(SQL_RAPPORTER_FILM);
+			ResultSet curseurFilm = requeteFilm.executeQuery();
 			curseurFilm.next();
 			
 			int id = curseurFilm.getInt("id");
