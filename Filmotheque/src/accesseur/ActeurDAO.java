@@ -1,6 +1,7 @@
 package accesseur;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,11 +19,16 @@ public class ActeurDAO {
 	
 	public List<Acteur> listerActeursParFilm(int idFilm){
 		List<Acteur> listeActeurs = new ArrayList<Acteur>();
-		Statement requeteListeActeurs;
 		
+		PreparedStatement requeteListeActeurs;
+	
 		try {
-			requeteListeActeurs = connection.createStatement();
-			ResultSet curseurListeActeurs = requeteListeActeurs.executeQuery("SELECT * FROM acteur WHERE id_film =" + idFilm);
+			String SQL_LISTER_ACTEUR_PAR_FILM = "SELECT * FROM acteur WHERE id_film = ?;";
+			
+			requeteListeActeurs = connection.prepareStatement(SQL_LISTER_ACTEUR_PAR_FILM);
+			requeteListeActeurs.setInt(1, idFilm);
+			
+			ResultSet curseurListeActeurs = requeteListeActeurs.executeQuery();
 			
 			while(curseurListeActeurs.next()){
 				int id = curseurListeActeurs.getInt("id");
