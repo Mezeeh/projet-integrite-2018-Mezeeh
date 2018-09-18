@@ -1,8 +1,9 @@
 package modele;
 
 public class Acteur {
-	protected int id,
-				  taille;
+	protected int id;
+	
+	protected float taille;
 	
 	protected String nom,
 					 naissance,
@@ -22,11 +23,11 @@ public class Acteur {
 		this.id = id;
 	}
 
-	public int getTaille() {
+	public float getTaille() {
 		return taille;
 	}
 
-	public void setTaille(int taille) {
+	public void setTaille(float taille) {
 		this.taille = taille;
 	}
 

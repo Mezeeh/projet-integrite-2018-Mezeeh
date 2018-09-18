@@ -71,7 +71,7 @@ public class ControleurFilm {
 		
 		//this.navigateur.naviguerVersVueAjouterFilm();
 		
- 		vueEditerFilm.afficherListeActeur(acteurDAO.simulerListeActeurs());
+ 		vueEditerFilm.afficherListeActeur(acteurDAO.listerActeurs());
 	}
 	
 	public void notifierAjouterFilm() {

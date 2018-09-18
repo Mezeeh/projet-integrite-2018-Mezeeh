@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.4
 -- Dumped by pg_dump version 9.6.4
 
--- Started on 2018-09-17 19:15:12
+-- Started on 2018-09-17 20:57:10
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -50,7 +50,7 @@ CREATE TABLE acteur (
     naissance text,
     taille text,
     nationalite text,
-    id_flim integer
+    id_film integer
 );
 
 
@@ -143,7 +143,14 @@ ALTER TABLE ONLY film ALTER COLUMN id SET DEFAULT nextval('film_id_seq'::regclas
 -- Data for Name: acteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY acteur (id, nom, naissance, taille, nationalite, id_flim) FROM stdin;
+COPY acteur (id, nom, naissance, taille, nationalite, id_film) FROM stdin;
+2	Bruce Willis	19 mars 1955	1.83	Allemand/Américain	1
+1	Alan Rickman	21 février 1946	1.85	Britannique	1
+3	Richard Crenna	30 novembre 1926	1.85	Américaine	2
+4	Sylvester Stallone	6 juillet 1946	1.77	Américaine	4
+6	Viggo Mortensen	20 octobre 1958	1.8	Danoise/Américaine	3
+5	Talia Shire	25 avril 1946	1.62	Américaine	4
+7	Elijah Wood	28 janvier 1981	1.68	Américaine	3
 \.
 
 
@@ -153,7 +160,7 @@ COPY acteur (id, nom, naissance, taille, nationalite, id_flim) FROM stdin;
 -- Name: acteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('acteur_id_seq', 1, false);
+SELECT pg_catalog.setval('acteur_id_seq', 7, true);
 
 
 --
@@ -168,6 +175,7 @@ Rambo	Revenu du Viêtnam, abruti autant par les mauvais traitements que lui ont 
 Le Seigneur des anneaux : La Communauté de l'anneau	Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron, le `Seigneur des ténèbres', de régner sur la `Terre du Milieu' et de réduire en esclavage ses peuples. Frodon doit parvenir jusqu'à la `Crevasse du Destin' pour détruire l'anneau.	fantasy/Action	2001	3h 48m	3
 Rocky	Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'Étalon Italien. Cependant, Mickey, propriétaire du club de boxe où Rocky a l'habitude de s'entraîner, décide de céder son casier à un boxeur plus talentueux.	Drame/Sport	1976	2h 2m	4
 1	2	3	4	5	15
+q	\N	\N	\N	\N	16
 \.
 
 
@@ -177,7 +185,7 @@ Rocky	Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à
 -- Name: film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('film_id_seq', 15, true);
+SELECT pg_catalog.setval('film_id_seq', 16, true);
 
 
 --
@@ -200,14 +208,14 @@ ALTER TABLE ONLY film
 
 --
 -- TOC entry 2015 (class 2606 OID 16444)
--- Name: acteur acteur_id_flim_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: acteur acteur_id_film_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY acteur
-    ADD CONSTRAINT acteur_id_flim_fkey FOREIGN KEY (id_flim) REFERENCES film(id);
+    ADD CONSTRAINT acteur_id_film_fkey FOREIGN KEY (id_film) REFERENCES film(id);
 
 
--- Completed on 2018-09-17 19:15:12
+-- Completed on 2018-09-17 20:57:10
 
 --
 -- PostgreSQL database dump complete

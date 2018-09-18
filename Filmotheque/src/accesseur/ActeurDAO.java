@@ -2,7 +2,9 @@ package accesseur;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,22 +33,36 @@ public class ActeurDAO {
 		}
 	}
 	
-	public List<Acteur> simulerListeActeurs(){
-		// TEST multiplicite
+	public List<Acteur> listerActeurs(){
 		List<Acteur> listeActeurs = new ArrayList<Acteur>();
-		Acteur personne;
+		Statement requeteListeActeurs;
 		
-		personne = new Acteur("Leonardo DiCaprio", "Américain");
-		listeActeurs.add(personne);
-		
-		personne = new Acteur("Clint Eastwood", "Américain");
-		listeActeurs.add(personne);
-		
-		personne = new Acteur("Brad Pitt", "Américain");
-		listeActeurs.add(personne);
-		
-		personne = new Acteur("Robert De Niro", "Américain/Italien");
-		listeActeurs.add(personne);
+		try {
+			requeteListeActeurs = connection.createStatement();
+			ResultSet curseurListeActeurs = requeteListeActeurs.executeQuery("SELECT * FROM acteur WHERE id_film = 1");
+			
+			while(curseurListeActeurs.next()){
+				int id = curseurListeActeurs.getInt("id");
+				
+				float taille = curseurListeActeurs.getFloat("taille");
+				
+				String nom = curseurListeActeurs.getString("nom");
+				String naissance = curseurListeActeurs.getString("naissance");								
+				String nationalite = curseurListeActeurs.getString("nationalite");	
+				
+				System.out.println("Acteur " + nom + " est ne le " + naissance);
+				
+				Acteur acteur = new Acteur(nom, nationalite);
+				acteur.setId(id);
+				acteur.setNom(nom);
+				acteur.setNaissance(naissance);
+				acteur.setTaille(taille);
+				
+				listeActeurs.add(acteur);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return listeActeurs;
 	}
