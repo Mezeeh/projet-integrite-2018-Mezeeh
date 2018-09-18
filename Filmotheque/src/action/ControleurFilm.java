@@ -3,6 +3,7 @@ package action;
 import java.util.ArrayList;
 import java.util.List;
 
+import accesseur.ActeurDAO;
 import accesseur.FilmDAO;
 import modele.Acteur;
 import modele.Film;
@@ -24,6 +25,7 @@ public class ControleurFilm {
 	private VueFilm vueFilm;
 	
 	private FilmDAO filmDAO;
+	private ActeurDAO acteurDAO;
 	
 	public ControleurFilm()
 	{
@@ -33,6 +35,7 @@ public class ControleurFilm {
 		vueFilm = null;
 		
 		filmDAO = new FilmDAO();
+		acteurDAO = new ActeurDAO();
 		
 		System.out.println("Initialisation du controleur");
 	}
@@ -68,19 +71,7 @@ public class ControleurFilm {
 		
 		//this.navigateur.naviguerVersVueAjouterFilm();
 		
-		// TEST multiplicite
-		List<Acteur> listeActeurs = new ArrayList<Acteur>();
-		Acteur personne;
-		personne = new Acteur("Leonardo DiCaprio", "Américain");
-		listeActeurs.add(personne);
-		personne = new Acteur("Clint Eastwood", "Américain");
-		listeActeurs.add(personne);
-		personne = new Acteur("Brad Pitt", "Américain");
-		listeActeurs.add(personne);
-		personne = new Acteur("Robert De Niro", "Américain/Italien");
-		listeActeurs.add(personne);
-		
- 		vueEditerFilm.afficherListeActeur(listeActeurs);
+ 		vueEditerFilm.afficherListeActeur(acteurDAO.simulerListeActeurs());
 	}
 	
 	public void notifierAjouterFilm() {
