@@ -43,18 +43,15 @@ public class VueEditerFilm extends Scene{
 		grilleListeActeurs = new GridPane();
 		
 		this.actionAjouterActeur = new Button("Ajouter un acteur");
-		this.actionAjouterActeur.setOnAction(new EventHandler<ActionEvent>() {
-			
+		this.actionAjouterActeur.setOnAction(new EventHandler<ActionEvent>() {	
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("Bouton actionAjouterActeur appuye");
+				controleur.notifierAjouterActeur();
 			}
-			
 		});
 		
 		this.actionEnregistrerFilm = new Button("Enregistrer");
 		this.actionEnregistrerFilm.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				controleur.notifierEnregistrerFilm();

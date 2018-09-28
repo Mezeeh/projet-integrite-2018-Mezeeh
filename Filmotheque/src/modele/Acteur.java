@@ -15,6 +15,14 @@ public class Acteur {
 		this.nationalite = nationalite;
 	}
 
+	public Acteur(String nom, String naissance, float taille, String nationalite) {
+		super();
+		this.nom = nom;
+		this.naissance = naissance;
+		this.taille = taille;		
+		this.nationalite = nationalite;
+	}
+
 	public int getId() {
 		return id;
 	}

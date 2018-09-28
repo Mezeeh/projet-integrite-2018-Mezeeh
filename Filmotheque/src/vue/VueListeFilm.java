@@ -65,7 +65,6 @@ public class VueListeFilm extends Scene{
 		}
 		
 		this.actionNaviguerAjouterFilm.setOnAction(new EventHandler<ActionEvent>() {
-			
 			@Override
 			public void handle(ActionEvent event) {
 				controleur.notifierAjouterFilm();

@@ -77,6 +77,11 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueAjouterFilm();
 	}
 	
+	public void notifierAjouterActeur() {
+		System.out.println("ControleurFilm.notifierNaviguerAjouterActeur()");
+		this.navigateur.naviguerVersVueAjouterActeur();
+	}
+	
 	public void notifierNaviguerEditerFilm(int idFilm){
 		System.out.println("ControleurFilm.notifierEditerFilm(" + idFilm + ")");
 		
