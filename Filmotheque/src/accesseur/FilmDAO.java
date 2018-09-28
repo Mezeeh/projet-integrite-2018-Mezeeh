@@ -87,6 +87,21 @@ public class FilmDAO implements FilmSQL{
 		}
 	}
 	
+	public void supprimerFilm(int idFilm) {
+		System.out.println("FilmDAO.supprimerFilm()");
+		PreparedStatement requeteSupprimerFilm;
+		try {
+			requeteSupprimerFilm = connection.prepareStatement(SQL_SUPPRIMER_FILM);
+			requeteSupprimerFilm.setInt(1, idFilm);
+			
+			System.out.println("SQL : " + SQL_MODIFIER_FILM);
+			
+			requeteSupprimerFilm.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public Film rapporterFilm(int idFilm) {
 		PreparedStatement requeteFilm;
 		try {

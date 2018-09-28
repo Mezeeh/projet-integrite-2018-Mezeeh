@@ -85,6 +85,14 @@ public class ControleurFilm {
 		this.navigateur.naviguerVersVueEditerFilm();
 	}
 	
+	public void notifierNaviguerSupprimerFilm(int idFilm){
+		System.out.println("ControleurFilm.notifierSupprimerFilm(" + idFilm + ")");
+		
+		this.filmDAO.supprimerFilm(idFilm);
+		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm());
+		this.navigateur.naviguerVersVueListeFilm();
+	}
+	
 	public void notifierEnregistrerFilm() {
 		System.out.println("ControleurFilm.notifierEnregistrerFilm()");
 		
