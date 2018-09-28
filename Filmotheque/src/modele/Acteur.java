@@ -1,7 +1,8 @@
 package modele;
 
 public class Acteur {
-	protected int id;
+	protected int id,
+					idFilm;
 	
 	protected float taille;
 	
@@ -61,5 +62,13 @@ public class Acteur {
 
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
+	}
+
+	public int getIdFilm() {
+		return idFilm;
+	}
+
+	public void setIdFilm(int idFilm) {
+		this.idFilm = idFilm;
 	}
 }

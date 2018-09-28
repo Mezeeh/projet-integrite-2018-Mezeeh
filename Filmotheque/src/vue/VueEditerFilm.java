@@ -46,7 +46,7 @@ public class VueEditerFilm extends Scene{
 		this.actionAjouterActeur.setOnAction(new EventHandler<ActionEvent>() {	
 			@Override
 			public void handle(ActionEvent event) {
-				controleur.notifierAjouterActeur();
+				controleur.notifierAjouterActeur(idFilm);
 			}
 		});
 		

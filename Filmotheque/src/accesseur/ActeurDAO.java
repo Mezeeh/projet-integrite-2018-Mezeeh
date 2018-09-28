@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.Acteur;
+import modele.Film;
 
 public class ActeurDAO implements ActeurSQL{
 	private Connection connection;
@@ -52,5 +53,24 @@ public class ActeurDAO implements ActeurSQL{
 		}
 		
 		return listeActeurs;
+	}
+	
+	public void ajouterActeur(Acteur acteur){
+		System.out.println("ActeurDAO.ajouterActeur()");
+		PreparedStatement requeteAjouterActeur;
+		try {
+			requeteAjouterActeur = connection.prepareStatement(SQL_AJOUTER_ACTEUR);
+			requeteAjouterActeur.setString(1, acteur.getNom());
+			requeteAjouterActeur.setString(2, acteur.getNaissance());
+			requeteAjouterActeur.setString(3, acteur.getNationalite());
+			requeteAjouterActeur.setString(4, Float.toString(acteur.getTaille()));
+			requeteAjouterActeur.setInt(5, acteur.getIdFilm());
+			
+			System.out.println("SQL : " + SQL_AJOUTER_ACTEUR);
+			
+			requeteAjouterActeur.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

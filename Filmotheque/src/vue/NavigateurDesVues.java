@@ -59,6 +59,10 @@ public class NavigateurDesVues extends Application{
 		return vueFilm;
 	}
 
+	public VueAjouterActeur getVueAjouterActeur() {
+		return vueAjouterActeur;
+	}
+
 	public void naviguerVersVueAjouterFilm() {
 		stade.setScene(this.vueAjouterFilm);
 		stade.show();

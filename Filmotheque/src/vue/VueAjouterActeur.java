@@ -26,6 +26,8 @@ public class VueAjouterActeur extends Scene{
 	private ControleurFilm controleur;
 	
 	protected Button actionEnregistrerActeur;
+	
+	private int idFilm;
 
 	public VueAjouterActeur() {
 		super(new VBox(), 400, 400);
@@ -37,7 +39,7 @@ public class VueAjouterActeur extends Scene{
 		actionEnregistrerActeur.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				controleur.notifierEnregistrerNouveauFilm();
+				controleur.notifierEnregistrerNouveauActeur(idFilm);
 			}
 		});
 		
@@ -75,5 +77,14 @@ public class VueAjouterActeur extends Scene{
 	
 	public void setControleur(ControleurFilm controleur) {
 		this.controleur = controleur;
+	}
+	
+	public int getIdFilm() {
+		return idFilm;
+	}
+
+
+	public void setIdFilm(int idFilm) {
+		this.idFilm = idFilm;
 	}
 }
