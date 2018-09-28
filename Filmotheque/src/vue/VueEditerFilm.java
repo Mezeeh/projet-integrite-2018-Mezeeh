@@ -31,7 +31,9 @@ public class VueEditerFilm extends Scene{
 	private ControleurFilm controleur;
 	
 	protected Button actionEnregistrerFilm,
-					 actionAjouterActeur;
+					 actionAjouterActeur,
+					 actionModifierActeur,
+					 actionSupprimerActeur;
 	
 	public VueEditerFilm()  {
 		super(new VBox(), 400, 400);
@@ -100,10 +102,26 @@ public class VueEditerFilm extends Scene{
 		grilleListeActeurs.getChildren().clear();
 		int item = 0;
 		for(Acteur acteur : listeActeurs){
+			actionModifierActeur = new Button("Éditer");
+			actionModifierActeur.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					System.out.println("vueEditerFilm.afficherListeActeur() actionModifierActeur");
+				}
+			});
+			
+			actionSupprimerActeur = new Button("Effacer");
+			actionSupprimerActeur.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					System.out.println("vueEditerFilm.afficherListeActeur() actionSupprimerActeur");
+				}
+			});
+			
 			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
 			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 1, item);
-			this.grilleListeActeurs.add(new Button("Éditer"), 2, item);
-			this.grilleListeActeurs.add(new Button("Effacer"), 3, item);
+			this.grilleListeActeurs.add(actionModifierActeur, 2, item);
+			this.grilleListeActeurs.add(actionSupprimerActeur, 3, item);
 			item++;
 		}
 	}
