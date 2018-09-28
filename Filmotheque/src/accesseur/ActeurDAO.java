@@ -73,4 +73,19 @@ public class ActeurDAO implements ActeurSQL{
 			e.printStackTrace();
 		}
 	}
+	
+	public void supprimerActeur(int idActeur) {
+		System.out.println("FilmDAO.supprimerActeur()");
+		PreparedStatement requeteSupprimerActeur;
+		try {
+			requeteSupprimerActeur = connection.prepareStatement(SQL_SUPPRIMER_ACTEUR);
+			requeteSupprimerActeur.setInt(1, idActeur);
+			
+			System.out.println("SQL : " + SQL_SUPPRIMER_ACTEUR);
+			
+			requeteSupprimerActeur.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

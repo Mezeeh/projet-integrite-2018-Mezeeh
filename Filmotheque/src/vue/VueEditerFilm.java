@@ -111,7 +111,7 @@ public class VueEditerFilm extends Scene{
 			actionSupprimerActeur.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					System.out.println("vueEditerFilm.afficherListeActeur() actionSupprimerActeur");
+					controleur.notifierNaviguerSupprimerActeur(acteur.getId(), idFilm);
 				}
 			});
 			

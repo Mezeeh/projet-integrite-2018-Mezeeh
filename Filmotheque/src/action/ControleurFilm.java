@@ -84,7 +84,7 @@ public class ControleurFilm {
 	
 	public void notifierAjouterActeur(int idFilm) {
 		System.out.println("ControleurFilm.notifierNaviguerAjouterActeur()");
-		this.vueAjouterActeur.setIdFilm(idFilm);;
+		this.vueAjouterActeur.setIdFilm(idFilm);
 		this.navigateur.naviguerVersVueAjouterActeur();
 	}
 	
@@ -102,6 +102,14 @@ public class ControleurFilm {
 		this.filmDAO.supprimerFilm(idFilm);
 		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm());
 		this.navigateur.naviguerVersVueListeFilm();
+	}
+	
+	public void notifierNaviguerSupprimerActeur(int idActeur, int idFilm){
+		System.out.println("ControleurFilm.notifierSupprimerActeur(" + idActeur + ")");
+		
+		this.acteurDAO.supprimerActeur(idActeur);
+		this.vueEditerFilm.afficherListeActeur(this.acteurDAO.listerActeursParFilm(idFilm));
+		this.navigateur.naviguerVersVueEditerFilm();
 	}
 	
 	public void notifierEnregistrerFilm() {
