@@ -74,6 +74,26 @@ public class ActeurDAO implements ActeurSQL{
 		}
 	}
 	
+	public void modifierActeur(Acteur acteur) {
+		System.out.println("ActeurDAO.modifierActeur()");
+		PreparedStatement requeteModifierActeur;
+		try {
+			requeteModifierActeur = connection.prepareStatement(SQL_MODIFIER_ACTEUR);
+			requeteModifierActeur.setString(1, acteur.getNom());
+			requeteModifierActeur.setString(2, acteur.getNaissance());
+			requeteModifierActeur.setFloat(3, acteur.getTaille());
+			requeteModifierActeur.setString(4, acteur.getNationalite());
+			//requeteModifierActeur.setInt(5, acteur.getIdFilm());
+			requeteModifierActeur.setInt(5, acteur.getId());
+			
+			System.out.println("SQL : " + SQL_MODIFIER_ACTEUR);
+			
+			requeteModifierActeur.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void supprimerActeur(int idActeur) {
 		System.out.println("FilmDAO.supprimerActeur()");
 		PreparedStatement requeteSupprimerActeur;

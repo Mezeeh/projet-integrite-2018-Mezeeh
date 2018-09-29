@@ -117,9 +117,11 @@ public class VueEditerFilm extends Scene{
 			});
 			
 			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
-			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 1, item);
-			this.grilleListeActeurs.add(actionModifierActeur, 2, item);
-			this.grilleListeActeurs.add(actionSupprimerActeur, 3, item);
+			this.grilleListeActeurs.add(new Label(acteur.getNaissance()), 1, item);
+			this.grilleListeActeurs.add(new Label(Float.toString(acteur.getTaille())), 2, item);
+			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 3, item);
+			this.grilleListeActeurs.add(actionModifierActeur, 4, item);
+			this.grilleListeActeurs.add(actionSupprimerActeur, 5, item);
 			item++;
 		}
 	}

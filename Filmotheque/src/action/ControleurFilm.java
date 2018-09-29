@@ -91,7 +91,6 @@ public class ControleurFilm {
 		System.out.println("ControleurFilm.notifierEditerActeur(" + idActeur + ")");
 		
 		this.vueEditerActeur.afficherActeur(this.acteurDAO.rapporterActeur(idActeur));
-		//this.vueEditerActeur.afficherListeActeur(this.acteurDAO.listerActeursParFilm(idFilm));
 		this.navigateur.naviguerVersVueEditerActeur();
 	}
 	
@@ -118,6 +117,15 @@ public class ControleurFilm {
 		this.filmDAO.modifierFilm(film);
 		this.vueListeFilm.afficherListeFilms(this.filmDAO.listerFilm()); // TODO optimiser
 		this.navigateur.naviguerVersVueListeFilm();
+	}
+	
+	public void notifierEnregistrerActeur() {
+		System.out.println("ControleurFilm.notifierEnregistrerActeur()");
+		
+		Acteur acteur = this.navigateur.getVueEditerActeur().demanderActeur();
+		this.acteurDAO.modifierActeur(acteur);
+		this.vueEditerFilm.afficherListeActeur(this.acteurDAO.listerActeursParFilm(acteur.getIdFilm()));
+		this.navigateur.naviguerVersVueEditerFilm();
 	}
 	
 	public void notifierEnregistrerNouveauFilm() {
