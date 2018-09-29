@@ -1,8 +1,5 @@
 package action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import accesseur.ActeurDAO;
 import accesseur.FilmDAO;
 import modele.Acteur;
@@ -12,7 +9,6 @@ import vue.VueAjouterActeur;
 import vue.VueAjouterFilm;
 import vue.VueEditerActeur;
 import vue.VueEditerFilm;
-import vue.VueFilm;
 import vue.VueListeFilm;
 
 public class ControleurFilm {
@@ -24,7 +20,6 @@ public class ControleurFilm {
 	private VueAjouterFilm vueAjouterFilm;
 	private VueEditerFilm vueEditerFilm;
 	private VueListeFilm vueListeFilm;
-	private VueFilm vueFilm;
 	
 	private VueAjouterActeur vueAjouterActeur;
 	private VueEditerActeur vueEditerActeur;
@@ -37,7 +32,6 @@ public class ControleurFilm {
 		instance = null;
 		vueAjouterFilm = null;
 		vueListeFilm = null;
-		vueFilm = null;
 		
 		filmDAO = new FilmDAO();
 		acteurDAO = new ActeurDAO();
@@ -57,7 +51,6 @@ public class ControleurFilm {
 		this.vueAjouterFilm = navigateur.getVueAjouterFilm();
 		this.vueEditerFilm = navigateur.getVueEditerFilm();
 		this.vueListeFilm = navigateur.getVueListeFilm();
-		this.vueFilm = navigateur.getVueFilm();
 		
 		this.vueAjouterActeur = navigateur.getVueAjouterActeur();
 		this.vueEditerActeur = navigateur.getVueEditerActeur();
