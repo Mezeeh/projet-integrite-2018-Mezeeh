@@ -88,4 +88,34 @@ public class ActeurDAO implements ActeurSQL{
 			e.printStackTrace();
 		}
 	}
+	
+	public Acteur rapporterActeur(int idActeur) {
+		PreparedStatement requeteActeur;
+		try {
+			requeteActeur = connection.prepareStatement(SQL_RAPPORTER_ACTEUR);
+			requeteActeur.setInt(1, idActeur);
+
+			System.out.println(SQL_RAPPORTER_ACTEUR);
+			
+			ResultSet curseurActeur = requeteActeur.executeQuery();
+			curseurActeur.next();
+			
+			int id = curseurActeur.getInt("id");
+			String nom = curseurActeur.getString("nom");
+			String naissance = curseurActeur.getString("naissance");
+			float taille = curseurActeur.getFloat("taille");
+			String nationalite = curseurActeur.getString("nationalite");
+			int id_film = curseurActeur.getInt("id_film");
+			
+			Acteur acteur = new Acteur(nom, naissance, taille, nationalite);
+			acteur.setId(id);
+			acteur.setIdFilm(id_film);
+			
+			return acteur;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

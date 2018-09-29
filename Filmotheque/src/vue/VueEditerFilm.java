@@ -104,6 +104,7 @@ public class VueEditerFilm extends Scene{
 				@Override
 				public void handle(ActionEvent event) {
 					System.out.println("vueEditerFilm.afficherListeActeur() actionModifierActeur");
+					controleur.notifierNaviguerEditerActeur(acteur.getId(), idFilm);
 				}
 			});
 			
