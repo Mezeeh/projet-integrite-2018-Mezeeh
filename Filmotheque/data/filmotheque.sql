@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.4
 -- Dumped by pg_dump version 9.6.4
 
--- Started on 2018-09-29 00:30:30
+-- Started on 2018-09-29 00:36:18
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -25,7 +25,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2153 (class 0 OID 0)
+-- TOC entry 2154 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -122,7 +122,7 @@ CREATE SEQUENCE acteur_id_seq
 ALTER TABLE acteur_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2154 (class 0 OID 0)
+-- TOC entry 2155 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: acteur_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -163,7 +163,7 @@ CREATE SEQUENCE film_id_seq
 ALTER TABLE film_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2155 (class 0 OID 0)
+-- TOC entry 2156 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: film_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -204,7 +204,7 @@ ALTER TABLE ONLY film ALTER COLUMN id SET DEFAULT nextval('film_id_seq'::regclas
 
 
 --
--- TOC entry 2145 (class 0 OID 16435)
+-- TOC entry 2146 (class 0 OID 16435)
 -- Dependencies: 188
 -- Data for Name: acteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -221,7 +221,7 @@ COPY acteur (id, nom, naissance, taille, nationalite, id_film) FROM stdin;
 
 
 --
--- TOC entry 2156 (class 0 OID 0)
+-- TOC entry 2157 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: acteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -230,7 +230,7 @@ SELECT pg_catalog.setval('acteur_id_seq', 13, true);
 
 
 --
--- TOC entry 2142 (class 0 OID 16422)
+-- TOC entry 2143 (class 0 OID 16422)
 -- Dependencies: 185
 -- Data for Name: film; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -240,12 +240,12 @@ Die Hard	Un policier new-yorkais, John McClane, est séparé de sa femme Holly, 
 Rambo	Revenu du Viêtnam, abruti autant par les mauvais traitements que lui ont jadis infligés ses tortionnaires que par l'indifférence de ses concitoyens, le soldat Rambo, un ancien des commandos d'élite, traîne sa redoutable carcasse de ville en ville. Un shérif teigneux lui interdit l'accès de sa bourgade. Rambo insiste. Il veut seulement manger. Le shérif le met sous les verrous et laisse son adjoint brutaliser ce divertissant clochard.	Drame/Thriller	1982	1h 33m	2
 Le Seigneur des anneaux : La Communauté de l'anneau	Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron, le `Seigneur des ténèbres', de régner sur la `Terre du Milieu' et de réduire en esclavage ses peuples. Frodon doit parvenir jusqu'à la `Crevasse du Destin' pour détruire l'anneau.	fantasy/Action	2001	3h 48m	3
 Rocky	Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'Étalon Italien. Cependant, Mickey, propriétaire du club de boxe où Rocky a l'habitude de s'entraîner, décide de céder son casier à un boxeur plus talentueux.	Drame/Sport	1976	2h 2m	4
-a	a	v	c	x	23
+qwe	a	v	c	x	23
 \.
 
 
 --
--- TOC entry 2157 (class 0 OID 0)
+-- TOC entry 2158 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -254,7 +254,7 @@ SELECT pg_catalog.setval('film_id_seq', 23, true);
 
 
 --
--- TOC entry 2146 (class 0 OID 16455)
+-- TOC entry 2147 (class 0 OID 16455)
 -- Dependencies: 189
 -- Data for Name: journal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -299,6 +299,14 @@ CREATE CONSTRAINT TRIGGER evenementajoutfilm AFTER INSERT ON journal NOT DEFERRA
 
 
 --
+-- TOC entry 2025 (class 2620 OID 16512)
+-- Name: journal evenementmodifierfilm; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER evenementmodifierfilm BEFORE UPDATE ON journal FOR EACH ROW EXECUTE PROCEDURE journaliser();
+
+
+--
 -- TOC entry 2023 (class 2606 OID 16450)
 -- Name: acteur acteur_id_film_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -307,7 +315,7 @@ ALTER TABLE ONLY acteur
     ADD CONSTRAINT acteur_id_film_fkey FOREIGN KEY (id_film) REFERENCES film(id) ON DELETE CASCADE;
 
 
--- Completed on 2018-09-29 00:30:30
+-- Completed on 2018-09-29 00:36:18
 
 --
 -- PostgreSQL database dump complete
