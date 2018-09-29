@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.4
 -- Dumped by pg_dump version 9.6.4
 
--- Started on 2018-09-17 20:57:10
+-- Started on 2018-09-28 21:39:20
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -160,7 +160,7 @@ COPY acteur (id, nom, naissance, taille, nationalite, id_film) FROM stdin;
 -- Name: acteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('acteur_id_seq', 7, true);
+SELECT pg_catalog.setval('acteur_id_seq', 13, true);
 
 
 --
@@ -174,8 +174,6 @@ Die Hard	Un policier new-yorkais, John McClane, est séparé de sa femme Holly, 
 Rambo	Revenu du Viêtnam, abruti autant par les mauvais traitements que lui ont jadis infligés ses tortionnaires que par l'indifférence de ses concitoyens, le soldat Rambo, un ancien des commandos d'élite, traîne sa redoutable carcasse de ville en ville. Un shérif teigneux lui interdit l'accès de sa bourgade. Rambo insiste. Il veut seulement manger. Le shérif le met sous les verrous et laisse son adjoint brutaliser ce divertissant clochard.	Drame/Thriller	1982	1h 33m	2
 Le Seigneur des anneaux : La Communauté de l'anneau	Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron, le `Seigneur des ténèbres', de régner sur la `Terre du Milieu' et de réduire en esclavage ses peuples. Frodon doit parvenir jusqu'à la `Crevasse du Destin' pour détruire l'anneau.	fantasy/Action	2001	3h 48m	3
 Rocky	Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'Étalon Italien. Cependant, Mickey, propriétaire du club de boxe où Rocky a l'habitude de s'entraîner, décide de céder son casier à un boxeur plus talentueux.	Drame/Sport	1976	2h 2m	4
-1	2	3	4	5	15
-q	\N	\N	\N	\N	16
 \.
 
 
@@ -185,7 +183,7 @@ q	\N	\N	\N	\N	16
 -- Name: film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('film_id_seq', 16, true);
+SELECT pg_catalog.setval('film_id_seq', 21, true);
 
 
 --
@@ -207,15 +205,15 @@ ALTER TABLE ONLY film
 
 
 --
--- TOC entry 2015 (class 2606 OID 16444)
+-- TOC entry 2015 (class 2606 OID 16450)
 -- Name: acteur acteur_id_film_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY acteur
-    ADD CONSTRAINT acteur_id_film_fkey FOREIGN KEY (id_film) REFERENCES film(id);
+    ADD CONSTRAINT acteur_id_film_fkey FOREIGN KEY (id_film) REFERENCES film(id) ON DELETE CASCADE;
 
 
--- Completed on 2018-09-17 20:57:10
+-- Completed on 2018-09-28 21:39:20
 
 --
 -- PostgreSQL database dump complete
