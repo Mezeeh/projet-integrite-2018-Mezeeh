@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.4
 -- Dumped by pg_dump version 9.6.4
 
--- Started on 2018-09-29 00:50:20
+-- Started on 2018-09-29 17:54:05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -25,7 +25,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2155 (class 0 OID 0)
+-- TOC entry 2195 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -36,7 +36,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 190 (class 1255 OID 16509)
+-- TOC entry 197 (class 1255 OID 16509)
 -- Name: journaliser(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -122,7 +122,7 @@ CREATE SEQUENCE acteur_id_seq
 ALTER TABLE acteur_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2156 (class 0 OID 0)
+-- TOC entry 2196 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: acteur_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -163,7 +163,7 @@ CREATE SEQUENCE film_id_seq
 ALTER TABLE film_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2157 (class 0 OID 0)
+-- TOC entry 2197 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: film_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -177,18 +177,162 @@ ALTER SEQUENCE film_id_seq OWNED BY film.id;
 --
 
 CREATE TABLE journal (
-    id bigint NOT NULL,
     moment timestamp with time zone NOT NULL,
     operation text NOT NULL,
     description text,
-    objet text NOT NULL
+    objet text NOT NULL,
+    id bigint NOT NULL
 );
 
 
 ALTER TABLE journal OWNER TO postgres;
 
 --
--- TOC entry 2016 (class 2604 OID 16438)
+-- TOC entry 193 (class 1259 OID 16540)
+-- Name: journal_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE journal_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE journal_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2198 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: journal_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE journal_id_seq OWNED BY journal.id;
+
+
+--
+-- TOC entry 191 (class 1259 OID 16523)
+-- Name: surveillanceActeur; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "surveillanceActeur" (
+    moment timestamp with time zone,
+    "nombreActeur" integer,
+    "moyenneTaille" real,
+    "checksumNom" text,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE "surveillanceActeur" OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 16531)
+-- Name: surveillanceActeurParFilm; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "surveillanceActeurParFilm" (
+    moment timestamp with time zone,
+    "nombreActeur" integer,
+    "moyenneTaille" real,
+    "checksumNom" text,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE "surveillanceActeurParFilm" OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 16563)
+-- Name: surveillanceActeurParFilm_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "surveillanceActeurParFilm_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "surveillanceActeurParFilm_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2199 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: surveillanceActeurParFilm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "surveillanceActeurParFilm_id_seq" OWNED BY "surveillanceActeurParFilm".id;
+
+
+--
+-- TOC entry 194 (class 1259 OID 16551)
+-- Name: surveillanceActeur_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "surveillanceActeur_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "surveillanceActeur_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2200 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: surveillanceActeur_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "surveillanceActeur_id_seq" OWNED BY "surveillanceActeur".id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 16515)
+-- Name: surveillanceFilm; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "surveillanceFilm" (
+    moment timestamp with time zone,
+    "nombreFilm" integer,
+    "moyenneDuree" real,
+    "checksumTitre" text,
+    id bigint NOT NULL
+);
+
+
+ALTER TABLE "surveillanceFilm" OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 16575)
+-- Name: surveillanceFilm_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE "surveillanceFilm_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "surveillanceFilm_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2201 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: surveillanceFilm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE "surveillanceFilm_id_seq" OWNED BY "surveillanceFilm".id;
+
+
+--
+-- TOC entry 2039 (class 2604 OID 16438)
 -- Name: acteur id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -196,7 +340,7 @@ ALTER TABLE ONLY acteur ALTER COLUMN id SET DEFAULT nextval('acteur_id_seq'::reg
 
 
 --
--- TOC entry 2015 (class 2604 OID 16430)
+-- TOC entry 2038 (class 2604 OID 16430)
 -- Name: film id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -204,7 +348,39 @@ ALTER TABLE ONLY film ALTER COLUMN id SET DEFAULT nextval('film_id_seq'::regclas
 
 
 --
--- TOC entry 2147 (class 0 OID 16435)
+-- TOC entry 2040 (class 2604 OID 16542)
+-- Name: journal id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY journal ALTER COLUMN id SET DEFAULT nextval('journal_id_seq'::regclass);
+
+
+--
+-- TOC entry 2042 (class 2604 OID 16553)
+-- Name: surveillanceActeur id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "surveillanceActeur" ALTER COLUMN id SET DEFAULT nextval('"surveillanceActeur_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2043 (class 2604 OID 16565)
+-- Name: surveillanceActeurParFilm id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "surveillanceActeurParFilm" ALTER COLUMN id SET DEFAULT nextval('"surveillanceActeurParFilm_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2041 (class 2604 OID 16577)
+-- Name: surveillanceFilm id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "surveillanceFilm" ALTER COLUMN id SET DEFAULT nextval('"surveillanceFilm_id_seq"'::regclass);
+
+
+--
+-- TOC entry 2180 (class 0 OID 16435)
 -- Dependencies: 188
 -- Data for Name: acteur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -221,7 +397,7 @@ COPY acteur (id, nom, naissance, taille, nationalite, id_film) FROM stdin;
 
 
 --
--- TOC entry 2158 (class 0 OID 0)
+-- TOC entry 2202 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: acteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -230,7 +406,7 @@ SELECT pg_catalog.setval('acteur_id_seq', 13, true);
 
 
 --
--- TOC entry 2144 (class 0 OID 16422)
+-- TOC entry 2177 (class 0 OID 16422)
 -- Dependencies: 185
 -- Data for Name: film; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -240,31 +416,100 @@ Die Hard	Un policier new-yorkais, John McClane, est séparé de sa femme Holly, 
 Rambo	Revenu du Viêtnam, abruti autant par les mauvais traitements que lui ont jadis infligés ses tortionnaires que par l'indifférence de ses concitoyens, le soldat Rambo, un ancien des commandos d'élite, traîne sa redoutable carcasse de ville en ville. Un shérif teigneux lui interdit l'accès de sa bourgade. Rambo insiste. Il veut seulement manger. Le shérif le met sous les verrous et laisse son adjoint brutaliser ce divertissant clochard.	Drame/Thriller	1982	1h 33m	2
 Le Seigneur des anneaux : La Communauté de l'anneau	Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron, le `Seigneur des ténèbres', de régner sur la `Terre du Milieu' et de réduire en esclavage ses peuples. Frodon doit parvenir jusqu'à la `Crevasse du Destin' pour détruire l'anneau.	fantasy/Action	2001	3h 48m	3
 Rocky	Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'Étalon Italien. Cependant, Mickey, propriétaire du club de boxe où Rocky a l'habitude de s'entraîner, décide de céder son casier à un boxeur plus talentueux.	Drame/Sport	1976	2h 2m	4
-sa	a	2	a	z	24
+q	w	e	r	t	25
 \.
 
 
 --
--- TOC entry 2159 (class 0 OID 0)
+-- TOC entry 2203 (class 0 OID 0)
 -- Dependencies: 186
 -- Name: film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('film_id_seq', 24, true);
+SELECT pg_catalog.setval('film_id_seq', 25, true);
 
 
 --
--- TOC entry 2148 (class 0 OID 16455)
+-- TOC entry 2181 (class 0 OID 16455)
 -- Dependencies: 189
 -- Data for Name: journal; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY journal (id, moment, operation, description, objet) FROM stdin;
+COPY journal (moment, operation, description, objet, id) FROM stdin;
+2018-09-29 17:50:30.63691-04	MODIFIER	{sa,a,2,a,z} -> {qwe,a,2,a,z}	film	1
+2018-09-29 17:50:47.451292-04	EFFACER	{qwe,a,2,a,z} -> {}	film	2
+2018-09-29 17:50:55.686466-04	AJOUTER	{} -> {q,w,e,r,t}	film	3
 \.
 
 
 --
--- TOC entry 2020 (class 2606 OID 16443)
+-- TOC entry 2204 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: journal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('journal_id_seq', 3, true);
+
+
+--
+-- TOC entry 2183 (class 0 OID 16523)
+-- Dependencies: 191
+-- Data for Name: surveillanceActeur; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "surveillanceActeur" (moment, "nombreActeur", "moyenneTaille", "checksumNom", id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2184 (class 0 OID 16531)
+-- Dependencies: 192
+-- Data for Name: surveillanceActeurParFilm; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "surveillanceActeurParFilm" (moment, "nombreActeur", "moyenneTaille", "checksumNom", id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2205 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: surveillanceActeurParFilm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"surveillanceActeurParFilm_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2206 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: surveillanceActeur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"surveillanceActeur_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2182 (class 0 OID 16515)
+-- Dependencies: 190
+-- Data for Name: surveillanceFilm; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "surveillanceFilm" (moment, "nombreFilm", "moyenneDuree", "checksumTitre", id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2207 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: surveillanceFilm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"surveillanceFilm_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 16443)
 -- Name: acteur acteur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -273,7 +518,7 @@ ALTER TABLE ONLY acteur
 
 
 --
--- TOC entry 2018 (class 2606 OID 16432)
+-- TOC entry 2045 (class 2606 OID 16432)
 -- Name: film film_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -282,7 +527,7 @@ ALTER TABLE ONLY film
 
 
 --
--- TOC entry 2022 (class 2606 OID 16462)
+-- TOC entry 2049 (class 2606 OID 16550)
 -- Name: journal journal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -291,31 +536,58 @@ ALTER TABLE ONLY journal
 
 
 --
--- TOC entry 2026 (class 2620 OID 16514)
--- Name: journal evenementajoutfilm; Type: TRIGGER; Schema: public; Owner: postgres
+-- TOC entry 2055 (class 2606 OID 16573)
+-- Name: surveillanceActeurParFilm surveillanceActeurParFilm_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER evenementajoutfilm BEFORE INSERT ON journal FOR EACH ROW EXECUTE PROCEDURE journaliser();
-
-
---
--- TOC entry 2025 (class 2620 OID 16513)
--- Name: journal evenementeffacerfilm; Type: TRIGGER; Schema: public; Owner: postgres
---
-
-CREATE TRIGGER evenementeffacerfilm BEFORE DELETE ON journal FOR EACH ROW EXECUTE PROCEDURE journaliser();
+ALTER TABLE ONLY "surveillanceActeurParFilm"
+    ADD CONSTRAINT "surveillanceActeurParFilm_pkey" PRIMARY KEY (id);
 
 
 --
--- TOC entry 2024 (class 2620 OID 16512)
--- Name: journal evenementmodifierfilm; Type: TRIGGER; Schema: public; Owner: postgres
+-- TOC entry 2053 (class 2606 OID 16562)
+-- Name: surveillanceActeur surveillanceActeur_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-CREATE TRIGGER evenementmodifierfilm BEFORE UPDATE ON journal FOR EACH ROW EXECUTE PROCEDURE journaliser();
+ALTER TABLE ONLY "surveillanceActeur"
+    ADD CONSTRAINT "surveillanceActeur_pkey" PRIMARY KEY (id);
 
 
 --
--- TOC entry 2023 (class 2606 OID 16450)
+-- TOC entry 2051 (class 2606 OID 16585)
+-- Name: surveillanceFilm surveillanceFilm_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "surveillanceFilm"
+    ADD CONSTRAINT "surveillanceFilm_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2057 (class 2620 OID 16537)
+-- Name: film evenementajoutfilm; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER evenementajoutfilm BEFORE INSERT ON film FOR EACH ROW EXECUTE PROCEDURE journaliser();
+
+
+--
+-- TOC entry 2058 (class 2620 OID 16538)
+-- Name: film evenementeffacerfilm; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER evenementeffacerfilm BEFORE DELETE ON film FOR EACH ROW EXECUTE PROCEDURE journaliser();
+
+
+--
+-- TOC entry 2059 (class 2620 OID 16539)
+-- Name: film evenementmodifierfilm; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER evenementmodifierfilm BEFORE UPDATE ON film FOR EACH ROW EXECUTE PROCEDURE journaliser();
+
+
+--
+-- TOC entry 2056 (class 2606 OID 16450)
 -- Name: acteur acteur_id_film_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -323,7 +595,7 @@ ALTER TABLE ONLY acteur
     ADD CONSTRAINT acteur_id_film_fkey FOREIGN KEY (id_film) REFERENCES film(id) ON DELETE CASCADE;
 
 
--- Completed on 2018-09-29 00:50:20
+-- Completed on 2018-09-29 17:54:05
 
 --
 -- PostgreSQL database dump complete
