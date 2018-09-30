@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.4
 -- Dumped by pg_dump version 9.6.4
 
--- Started on 2018-09-29 20:10:43
+-- Started on 2018-09-29 21:06:57
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -146,7 +146,7 @@ CREATE TABLE acteur (
     naissance text,
     nationalite text,
     id_film integer,
-    taille real
+    taille integer
 );
 
 
@@ -432,13 +432,13 @@ ALTER TABLE ONLY "surveillanceFilm" ALTER COLUMN id SET DEFAULT nextval('"survei
 --
 
 COPY acteur (id, nom, naissance, nationalite, id_film, taille) FROM stdin;
-7	Elijah Wood	28 janvier 1981	Américaine	3	1.67999995
-2	Bruce Willis	19 mars 1955	Allemand/Américain	1	1.83000004
-1	Alan Rickman	21 février 1946	Britannique	1	1.85000002
-4	Sylvester Stallone	6 juillet 1946	Américaine	4	1.76999998
-3	Richard Crenna	30 novembre 1926	Américaine	2	1.85000002
-6	Viggo Mortensen	20 octobre 1958	Danoise/Américaine	3	1.79999995
-5	Talia Shire	25 avril 1946	Américaine	4	1.62
+2	Bruce Willis	19 mars 1955	Allemand/Américain	1	183
+1	Alan Rickman	21 février 1946	Britannique	1	185
+4	Sylvester Stallone	6 juillet 1946	Américaine	4	177
+3	Richard Crenna	30 novembre 1926	Américaine	2	185
+6	Viggo Mortensen	20 octobre 1958	Danoise/Américaine	3	180
+5	Talia Shire	25 avril 1946	Américaine	4	162
+7	Elijah Wood	28 janvier 1981	Américaine	3	168
 \.
 
 
@@ -448,7 +448,7 @@ COPY acteur (id, nom, naissance, nationalite, id_film, taille) FROM stdin;
 -- Name: acteur_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('acteur_id_seq', 13, true);
+SELECT pg_catalog.setval('acteur_id_seq', 15, true);
 
 
 --
@@ -462,7 +462,6 @@ Rambo	Revenu du Viêtnam, abruti autant par les mauvais traitements que lui ont 
 Die Hard	Un policier new-yorkais, John McClane, est séparé de sa femme Holly, cadre dans une puissante multinationale japonaise, la Nakatomi Corporation. Venu à Los Angeles passer les fêtes avec elle, il se rend à la tour Nakatomi où le patron donne une grande soirée. Tandis que John s'isole pour téléphoner, un groupe de terroristes allemands, dirigé par Hans Gruber, pénètre dans l'immeuble.	énigme/Thriller	1988	1	132
 Rocky	Rocky Balboa travaille pour Tony Gazzo, un usurier, et dispute de temps à autre des combats de boxe pour quelques dizaines de dollars sous l'appellation de l'Étalon Italien. Cependant, Mickey, propriétaire du club de boxe où Rocky a l'habitude de s'entraîner, décide de céder son casier à un boxeur plus talentueux.	Drame/Sport	1976	4	122
 Le Seigneur des anneaux : La Communauté de l'anneau	Un jeune et timide `Hobbit', Frodon Sacquet, hérite d'un anneau magique. Bien loin d'être une simple babiole, il s'agit d'un instrument de pouvoir absolu qui permettrait à Sauron, le `Seigneur des ténèbres', de régner sur la `Terre du Milieu' et de réduire en esclavage ses peuples. Frodon doit parvenir jusqu'à la `Crevasse du Destin' pour détruire l'anneau.	fantasy/Action	2001	3	228
-q	w	e	22	26	4
 \.
 
 
@@ -493,6 +492,9 @@ COPY journal (moment, operation, description, objet, id) FROM stdin;
 2018-09-29 18:38:23.440132-04	AJOUTER	{} -> {q,w,e,22,22}	film	9
 2018-09-29 18:38:29.629153-04	MODIFIER	{q,w,e,22,22} -> {q,w,e,22,4}	film	10
 2018-09-29 18:44:41.972711-04	EFFACER	{q,w,e,r,1} -> {}	film	11
+2018-09-29 21:06:03.253731-04	MODIFIER	{q,w,e,22,4} -> {wds,wds,ed,1,46}	film	12
+2018-09-29 21:06:12.253597-04	MODIFIER	{wds,wds,ed,1,46} -> {wds,wds,ed,1,46}	film	13
+2018-09-29 21:06:14.842421-04	EFFACER	{wds,wds,ed,1,46} -> {}	film	14
 \.
 
 
@@ -502,7 +504,7 @@ COPY journal (moment, operation, description, objet, id) FROM stdin;
 -- Name: journal_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('journal_id_seq', 11, true);
+SELECT pg_catalog.setval('journal_id_seq', 14, true);
 
 
 --
@@ -656,7 +658,7 @@ ALTER TABLE ONLY acteur
     ADD CONSTRAINT acteur_id_film_fkey FOREIGN KEY (id_film) REFERENCES film(id) ON DELETE CASCADE;
 
 
--- Completed on 2018-09-29 20:10:43
+-- Completed on 2018-09-29 21:06:57
 
 --
 -- PostgreSQL database dump complete

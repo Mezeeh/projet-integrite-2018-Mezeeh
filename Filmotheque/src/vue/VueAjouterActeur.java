@@ -69,7 +69,7 @@ public class VueAjouterActeur extends Scene{
 	public Acteur demanderActeur() {
 		Acteur acteur = new Acteur(this.valeurNom.getText(), 
 				this.valeurNaissance.getText(), 
-				Float.parseFloat(this.valeurTaille.getText()), 
+				Integer.parseInt(this.valeurTaille.getText()), 
 				this.valeurNationalite.getText());
 		
 		return acteur;

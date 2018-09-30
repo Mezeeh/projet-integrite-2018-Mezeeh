@@ -91,7 +91,7 @@ public class VueEditerFilm extends Scene{
 		this.valeurDescription.setText(film.getDescription());
 		this.valeurGenre.setText(film.getGenre());
 		this.valeurDateDeSortie.setText(film.getDateDeSortie());
-		this.valeurDuree.setText(Float.toString(film.getDuree()));
+		this.valeurDuree.setText(Integer.toString(film.getDuree()));
 	}
 	
 	public void afficherListeActeur(List<Acteur> listeActeurs) {
@@ -117,7 +117,7 @@ public class VueEditerFilm extends Scene{
 			
 			this.grilleListeActeurs.add(new Label(acteur.getNom()), 0, item);
 			this.grilleListeActeurs.add(new Label(acteur.getNaissance()), 1, item);
-			this.grilleListeActeurs.add(new Label(Float.toString(acteur.getTaille())), 2, item);
+			this.grilleListeActeurs.add(new Label(Integer.toString(acteur.getTaille())), 2, item);
 			this.grilleListeActeurs.add(new Label(acteur.getNationalite()), 3, item);
 			this.grilleListeActeurs.add(actionModifierActeur, 4, item);
 			this.grilleListeActeurs.add(actionSupprimerActeur, 5, item);
@@ -131,7 +131,7 @@ public class VueEditerFilm extends Scene{
 							this.valeurDescription.getText(), 
 							this.valeurGenre.getText(), 
 							this.valeurDateDeSortie.getText(), 
-							Float.parseFloat(this.valeurDuree.getText()));
+							Integer.parseInt(this.valeurDuree.getText()));
 		film.setId(idFilm);
 		
 		return film;

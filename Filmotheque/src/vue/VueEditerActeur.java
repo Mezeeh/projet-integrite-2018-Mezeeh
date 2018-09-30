@@ -69,7 +69,7 @@ public class VueEditerActeur extends Scene{
 		this.idActeur = acteur.getId();
 		this.valeurNom.setText(acteur.getNom());
 		this.valeurNaissance.setText(acteur.getNaissance());
-		this.valeurTaille.setText(Float.toString(acteur.getTaille()));
+		this.valeurTaille.setText(Integer.toString(acteur.getTaille()));
 		this.valeurNationalite.setText(acteur.getNationalite());
 		this.idFilm = acteur.getIdFilm();
 	}
@@ -77,7 +77,7 @@ public class VueEditerActeur extends Scene{
 	public Acteur demanderActeur(){
 		Acteur acteur = new Acteur(this.valeurNom.getText(), 
 						this.valeurNaissance.getText(), 
-						Float.parseFloat(this.valeurTaille.getText()), 
+						Integer.parseInt(this.valeurTaille.getText()), 
 						this.valeurNationalite.getText());
 		acteur.setId(idActeur);
 		acteur.setIdFilm(idFilm);

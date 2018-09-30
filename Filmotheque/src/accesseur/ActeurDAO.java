@@ -32,7 +32,7 @@ public class ActeurDAO implements ActeurSQL{
 			while(curseurListeActeurs.next()){
 				int id = curseurListeActeurs.getInt("id");
 				
-				float taille = curseurListeActeurs.getFloat("taille");
+				int taille = curseurListeActeurs.getInt("taille");
 				
 				String nom = curseurListeActeurs.getString("nom");
 				String naissance = curseurListeActeurs.getString("naissance");								
@@ -62,8 +62,8 @@ public class ActeurDAO implements ActeurSQL{
 			requeteAjouterActeur = connection.prepareStatement(SQL_AJOUTER_ACTEUR);
 			requeteAjouterActeur.setString(1, acteur.getNom());
 			requeteAjouterActeur.setString(2, acteur.getNaissance());
-			requeteAjouterActeur.setString(3, acteur.getNationalite());
-			requeteAjouterActeur.setFloat(4, acteur.getTaille());
+			requeteAjouterActeur.setInt(3, acteur.getTaille());
+			requeteAjouterActeur.setString(4, acteur.getNationalite());
 			requeteAjouterActeur.setInt(5, acteur.getIdFilm());
 			
 			System.out.println("SQL : " + SQL_AJOUTER_ACTEUR);
@@ -81,7 +81,7 @@ public class ActeurDAO implements ActeurSQL{
 			requeteModifierActeur = connection.prepareStatement(SQL_MODIFIER_ACTEUR);
 			requeteModifierActeur.setString(1, acteur.getNom());
 			requeteModifierActeur.setString(2, acteur.getNaissance());
-			requeteModifierActeur.setFloat(3, acteur.getTaille());
+			requeteModifierActeur.setInt(3, acteur.getTaille());
 			requeteModifierActeur.setString(4, acteur.getNationalite());
 			//requeteModifierActeur.setInt(5, acteur.getIdFilm());
 			requeteModifierActeur.setInt(5, acteur.getId());
@@ -123,7 +123,7 @@ public class ActeurDAO implements ActeurSQL{
 			int id = curseurActeur.getInt("id");
 			String nom = curseurActeur.getString("nom");
 			String naissance = curseurActeur.getString("naissance");
-			float taille = curseurActeur.getFloat("taille");
+			int taille = curseurActeur.getInt("taille");
 			String nationalite = curseurActeur.getString("nationalite");
 			int id_film = curseurActeur.getInt("id_film");
 			

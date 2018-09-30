@@ -33,7 +33,7 @@ public class FilmDAO implements FilmSQL{
 				String description = curseurListeFilms.getString("description");
 				String genre = curseurListeFilms.getString("genre");
 				String dateDeSortie = curseurListeFilms.getString("date_de_sortie");
-				float duree = curseurListeFilms.getFloat("duree");
+				int duree = curseurListeFilms.getInt("duree");
 				
 				System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
 				
@@ -57,7 +57,7 @@ public class FilmDAO implements FilmSQL{
 			requeteAjouterFilm.setString(2, film.getDescription());
 			requeteAjouterFilm.setString(3, film.getGenre());
 			requeteAjouterFilm.setString(4, film.getDateDeSortie());
-			requeteAjouterFilm.setFloat(5, film.getDuree());
+			requeteAjouterFilm.setInt(5, film.getDuree());
 			
 			System.out.println("SQL : " + SQL_AJOUTER_FILM);
 			
@@ -76,7 +76,7 @@ public class FilmDAO implements FilmSQL{
 			requeteModifierFilm.setString(2, film.getDescription());
 			requeteModifierFilm.setString(3, film.getGenre());
 			requeteModifierFilm.setString(4, film.getDateDeSortie());
-			requeteModifierFilm.setFloat(5, film.getDuree());
+			requeteModifierFilm.setInt(5, film.getDuree());
 			requeteModifierFilm.setInt(6, film.getId());
 			
 			System.out.println("SQL : " + SQL_MODIFIER_FILM);
@@ -118,7 +118,7 @@ public class FilmDAO implements FilmSQL{
 			String description = curseurFilm.getString("description");
 			String genre = curseurFilm.getString("genre");
 			String dateDeSortie = curseurFilm.getString("date_de_sortie");
-			float duree = curseurFilm.getFloat("duree");
+			int duree = curseurFilm.getInt("duree");
 			
 			System.out.println("Le film " + titre + " qui presente " + description + " sortie le " + dateDeSortie + "est un film de " + genre + " qui dure " + duree);
 			

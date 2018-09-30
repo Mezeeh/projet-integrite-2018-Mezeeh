@@ -4,7 +4,7 @@ public class Acteur {
 	protected int id,
 					idFilm;
 	
-	protected float taille;
+	protected int taille;
 	
 	protected String nom,
 					 naissance,
@@ -16,7 +16,7 @@ public class Acteur {
 		this.nationalite = nationalite;
 	}
 
-	public Acteur(String nom, String naissance, float taille, String nationalite) {
+	public Acteur(String nom, String naissance, int taille, String nationalite) {
 		super();
 		this.nom = nom;
 		this.naissance = naissance;
@@ -32,11 +32,11 @@ public class Acteur {
 		this.id = id;
 	}
 
-	public float getTaille() {
+	public int getTaille() {
 		return taille;
 	}
 
-	public void setTaille(float taille) {
+	public void setTaille(int taille) {
 		this.taille = taille;
 	}
 
