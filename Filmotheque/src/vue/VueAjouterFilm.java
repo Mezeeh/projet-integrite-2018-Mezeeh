@@ -74,7 +74,7 @@ public class VueAjouterFilm extends Scene{
 				this.valeurDescription.getText(), 
 				this.valeurGenre.getText(), 
 				this.valeurDateDeSortie.getText(), 
-				this.valeurDuree.getText());
+				Float.parseFloat(this.valeurDuree.getText()));
 		
 		return film;
 	}

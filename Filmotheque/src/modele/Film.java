@@ -4,8 +4,9 @@ public class Film {
 	protected String titre,
 					description,
 					genre,
-					dateDeSortie,
-					duree;
+					dateDeSortie;
+					
+	protected float duree;
 	
 	protected int id;
 
@@ -35,7 +36,7 @@ public class Film {
 		this.dateDeSortie = dateDeSortie;
 	}
 
-	public Film(String titre, String description, String genre, String dateDeSortie, String duree) {
+	public Film(String titre, String description, String genre, String dateDeSortie, float duree) {
 		super();
 		this.titre = titre;
 		this.description = description;
@@ -76,11 +77,11 @@ public class Film {
 		this.dateDeSortie = dateDeSortie;
 	}
 
-	public String getDuree() {
+	public float getDuree() {
 		return duree;
 	}
 
-	public void setDuree(String duree) {
+	public void setDuree(float duree) {
 		this.duree = duree;
 	}
 

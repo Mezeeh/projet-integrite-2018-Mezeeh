@@ -63,7 +63,7 @@ public class ActeurDAO implements ActeurSQL{
 			requeteAjouterActeur.setString(1, acteur.getNom());
 			requeteAjouterActeur.setString(2, acteur.getNaissance());
 			requeteAjouterActeur.setString(3, acteur.getNationalite());
-			requeteAjouterActeur.setString(4, Float.toString(acteur.getTaille()));
+			requeteAjouterActeur.setFloat(4, acteur.getTaille());
 			requeteAjouterActeur.setInt(5, acteur.getIdFilm());
 			
 			System.out.println("SQL : " + SQL_AJOUTER_ACTEUR);

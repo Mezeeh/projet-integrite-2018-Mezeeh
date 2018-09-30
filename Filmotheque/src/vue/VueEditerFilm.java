@@ -91,7 +91,7 @@ public class VueEditerFilm extends Scene{
 		this.valeurDescription.setText(film.getDescription());
 		this.valeurGenre.setText(film.getGenre());
 		this.valeurDateDeSortie.setText(film.getDateDeSortie());
-		this.valeurDuree.setText(film.getDuree());
+		this.valeurDuree.setText(Float.toString(film.getDuree()));
 	}
 	
 	public void afficherListeActeur(List<Acteur> listeActeurs) {
@@ -131,7 +131,7 @@ public class VueEditerFilm extends Scene{
 							this.valeurDescription.getText(), 
 							this.valeurGenre.getText(), 
 							this.valeurDateDeSortie.getText(), 
-							this.valeurDuree.getText());
+							Float.parseFloat(this.valeurDuree.getText()));
 		film.setId(idFilm);
 		
 		return film;

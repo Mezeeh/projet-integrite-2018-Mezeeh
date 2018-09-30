@@ -58,7 +58,7 @@ public class VueListeFilm extends Scene{
 			this.grilleFilms.add(new Label(film.getDescription()), 1, numero);
 			this.grilleFilms.add(new Label(film.getGenre()), 2, numero);
 			this.grilleFilms.add(new Label(film.getDateDeSortie()), 3, numero);
-			this.grilleFilms.add(new Label(film.getDuree()), 4, numero);
+			this.grilleFilms.add(new Label(Float.toString(film.getDuree())), 4, numero);
 			
 			this.grilleFilms.add(actionEditerFilm, 5, numero);
 			this.grilleFilms.add(actionSupprimerFilm, 6, numero);
